@@ -1,0 +1,193 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family:cursive;
+}
+body{
+    overflow-x:hidden;
+}
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    
+    font-size: 25px;
+}
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 120px;}
+
+nav{
+    background: #006101;
+    height:10vh;
+}
+aside{
+    background-color:#349704;
+    height: 8vh;
+    padding: 10px; 
+}
+aside a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    float:right;
+    margin-right:15px;  
+}
+section{
+    background-color: white;
+    padding:25px;
+    justify-content:center;
+    display: flex;
+  
+}
+footer{
+    background-color: #006101;
+    height:40vh;
+}
+.footer1{
+    background-color:#349704;
+    height: 8vh;
+}
+.opc{
+    padding: 20px;
+}
+
+
+
+
+.icono{
+    color: #349704;
+}
+
+
+
+.datos1, .datos2{
+    padding:20px; 
+}
+
+
+.datosChat{
+    background-color:#FFD607;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.display-chat {
+    height: 50vh;
+    background-color: #ffed91;
+    overflow: auto;
+    padding: 15px;
+}
+
+.formulario-mensaje{
+    background-color:#FFD607;
+    padding: 15px;
+    padding-left: 25px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.formulario-mensaje textarea{
+    height: 7vh;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 15px;
+}
+
+.divcol{
+    padding: 0;
+    margin: 0;
+}
+.btn{
+    margin-bottom: 50px;
+    height: 7vh;
+    width: 80%;
+    background-color: #ff8902;
+    border: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #fff;
+}
+  
+.btn:hover{
+    background-color: #ff9602;
+    color: #fff;
+}
+
+
+.messageUsuario1{
+    width: 60%;
+    background-color:#FFD607;
+    color: black;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding: 10px;
+    margin-bottom: 3%;
+    padding-left: 25px;
+    float: right;
+}
+
+.messageUsuario2{
+    width: 60%;
+    float: left;
+    background-color:white;
+    color: black;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    padding: 10px;
+    padding-left: 25px;
+    margin-bottom: 3%;
+}
+
+
+.message{
+    width: 100%;
+    float: left;
+    background-color:white;
+    color: black;
+    border-radius: 15px;
+    padding: 10px;
+    padding-left: 25px;
+    margin-bottom: 3%;
+}
+.container {
+    margin-top: 3%;
+    width: 90%;
+    background-color: #349704;
+    padding-right: 10%;
+    padding-left: 10%;
+    border: #120633 1px solid;
+    border-radius: 5%;
+}
+
+
+/*Media para dispositivos con una anchura máx. de 952px*/ 
+@media (max-width: 952px){
+    .enlace{padding-left: 20px;}
+}
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 768px){
+    .enlace{font-size: 20px;}
+    .datos1{
+        height:25vh;
+    }
+    .datos2{
+        height:15vh;      
+    }
+    form input, form button{
+        margin-top: 5px;
+    }
+
+    footer{
+        height:80vh;
+    }
+}

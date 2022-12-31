@@ -1,0 +1,160 @@
+/*Estio que se le aplica a toda la página*/
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/*Se oculta el overflow en el eje x del body*/
+body{
+    overflow-x:hidden;
+}
+
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 140px;}
+
+/*Estilos del navbar de la página*/
+nav{
+    background: #006101;
+    height:10vh;
+}
+
+/*Estilos del aside de la página*/
+aside{
+    background-color:#349704;
+    height: 8vh;
+    padding: 10px; 
+}
+
+/*Estilos del los enlaces que se encuentren en el aside*/
+aside a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    float:right;
+    margin-right:15px;  
+}
+
+/*Estilos del los enlaces al pasar por ellos*/
+aside a:hover{
+    color:#FFD607;
+}
+
+/*Estilos del section de la página*/
+section{
+    background-color: white;
+    padding:25px;
+}
+
+/*Estilos del footer de la página*/
+footer{
+    background-color: #006101;
+    height:35vh;
+}
+.footer1{
+    background-color:#349704;
+    height: 8vh;
+}
+.footerRow{
+    padding: 25px;
+}
+
+
+
+.form-control-plaintext{
+  border: 2px solid #349704;
+}
+#calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  #title{
+    color: #9c27b0;
+    font-weight: 800;
+    border-bottom: 3px solid coral;
+    background: #ccc;
+    padding: 8px 30px;
+  }
+  
+  /****************/
+  input {
+    display: none;
+  }
+  
+  
+  .fc-content{
+    color: #fff !important;
+    padding: 5px;
+  }
+  
+  #btnCerrar{
+    color:rgb(255, 0, 51);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  #btnCerrar:hover{
+    cursor: pointer;
+    color:white;
+  }
+
+.modal-content{
+    padding:25px;
+    border-radius:20px;
+    border-left: 3px solid #349704;
+    border-right: 3px solid #349704;
+    border-top: 15px solid #349704;
+    border-bottom: 15px solid #349704;
+}
+
+.form-control{
+    border: 2px solid #349704;
+}
+
+.rowSection{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+}
+.encabezado{
+    transition: transform .2s;
+    border-bottom: 4px solid #349704;
+    padding: 10px;
+    font-size: 35px;
+    height: auto;
+}
+/*Media para dispositivos con una anchura máx. de 952px*/ 
+@media (max-width: 952px){
+    .enlace{padding-left: 20px;}
+}
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 858px){
+    .enlace{font-size: 20px;}
+    .datos1{
+        height:25vh;
+    }
+    .datos2{
+        height:15vh;
+        
+    }
+    form input, form button{
+        margin-top: 5px;
+    }
+
+    footer{
+        height:80vh;
+    }
+}

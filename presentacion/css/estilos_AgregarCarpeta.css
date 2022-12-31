@@ -1,0 +1,157 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family:cursive;
+}
+body{
+    overflow-x:hidden;
+}
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    
+    font-size: 25px;
+}
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 120px;}
+
+nav{
+    background: #006101;
+    height:10vh;
+}
+aside{
+    background-color:#349704;
+    height: 8vh;
+    padding: 10px; 
+}
+aside a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    float:right;
+    margin-right:15px;  
+}
+section{
+    background-color: white;
+    padding:25px;
+    justify-content:center;
+    display: flex;
+  
+}
+/*Estilos del footer de la página*/
+footer{
+    background-color: #006101;
+    height:35vh;
+}
+.footer1{
+    background-color:#349704;
+    height: 8vh;
+}
+.footerRow{
+    padding: 25px;
+}
+
+.formulario{
+    padding:25px;
+    border-radius:20px;
+    border-left: 2px solid #349704;
+    border-right: 2px solid #349704;
+    border-top: 15px solid #349704;
+    border-bottom: 15px solid #349704;
+}
+
+.formulario h2{
+    color: grey;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.input-group{
+    padding-top:10px;
+}
+
+.input-group-text{
+    width: 10%;
+   
+}
+
+
+.icono{
+    color: #349704;
+}
+
+.btnRegistrar{
+    margin-top: 10px;
+    height: 6vh;
+    width: 100%;
+    background-color: #349704;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+}
+  
+.btnRegistrar:hover{
+    background-color: #41c400;
+}
+
+.form-select, .form-control{
+    border-left: 2px solid #349704;
+    border-right: 2px solid #349704;
+    border-top: 2px solid #349704;
+    border-bottom: 2px solid #349704;
+}
+.formulario span{
+    border-left: 2px solid #349704;
+    border-top: 2px solid #349704;
+    border-bottom: 2px solid #349704;
+    background-color: #a8d860;
+}
+
+
+.btnAceptar{
+    margin-top: 10px;
+    height: 6vh;
+    width: 100%;
+    background-color: #349704;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+}
+  
+.btnAceptar:hover{
+    background-color: #41c400;
+}
+
+/*Media para dispositivos con una anchura máx. de 952px*/ 
+@media (max-width: 952px){
+    .enlace{padding-left: 20px;}
+}
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 858px){
+    * {
+        font-family:Arial, Helvetica, sans-serif; 
+    }
+    .enlace{
+        font-size: 20px;
+        
+    }
+    .datos1{
+        height:25vh;
+    }
+    .datos2{
+        height:15vh;
+        
+    }
+ 
+    footer{
+        height:80vh;
+    }
+    .input-group-text{
+        width: 18%;
+       
+    }
+}

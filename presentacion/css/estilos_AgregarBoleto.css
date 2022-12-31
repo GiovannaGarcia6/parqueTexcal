@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family:cursive;
+}
+body{
+    overflow-x:hidden;
+}
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    
+    font-size: 25px;
+}
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 150px;}
+
+nav{
+    background: #006101;
+    height:10vh;
+}
+aside{
+    background-color:#349704;
+    height: 8vh;
+    padding: 10px; 
+}
+/*Estilos del los enlaces que se encuentren en el aside*/
+aside a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    float:right;
+    margin-right:15px;  
+}
+
+/*Estilos del los enlaces al pasar por ellos*/
+aside a:hover{
+    color:#FFD607;
+}
+
+section{
+    background-color: white;
+    padding:25px;
+    justify-content:center;
+    display: flex;
+}
+footer{
+    background-color: #006101;
+    height:35vh;
+}
+.footer1{
+    background-color:#349704;
+    height: 8vh;
+}
+
+.formulario{
+    padding:25px;
+    border-radius:20px;
+    border-left: 1px solid #349704;
+    border-right: 1px solid #349704;
+    border-top: 15px solid #349704;
+    border-bottom: 15px solid #349704;
+}
+
+.input-group{
+    padding-top:10px;
+
+}
+
+.input-group-text{
+    width: 10%;
+    background-color: #A8D860;
+    border: 2px solid #349704;
+    color: #349704;
+    justify-content: center;
+}
+
+.form-select,.form-control{
+    border: 2px solid #349704;
+}
+
+.btnAceptar{
+    margin-top: 10px;
+    width: 100%;
+    background-color: #349704;
+    border: none;
+    color: #fff;
+    height: 5vh;
+    border-radius: 5px;
+}
+  
+.btnAceptar:hover{
+    background-color: #41c400;
+}
+  
+.datos, .datos2{
+    padding:20px; 
+}
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 767px){
+    * {
+        font-family:Arial, Helvetica, sans-serif; 
+    }
+    .enlace{
+        font-size: 20px;
+    }
+    section{
+        margin-left:0px;
+    }
+    footer{
+        height: 80vh;
+        justify-content:center;
+    }
+    .datos{
+        margin:20px;
+        height:30vh;
+    }
+    .datos2{
+        margin:20px;
+        height:15vh;
+    }
+    .input-group-text{
+        width: 18%;
+       justify-content: center;
+    }
+}
+
+
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (width: 768px){
+
+    footer{
+        height: 35vh;
+    }
+}

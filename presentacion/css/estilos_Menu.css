@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+   
+}
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    font-family:cursive;
+    font-size: 25px;
+}
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 140px;}
+/*Se le añade un color de fondo al nav y un tamaño*/
+nav{
+    background: #006101;
+    height: 9vh;
+}
+aside{
+    background-color: #349704;
+    text-align: center;
+    padding:10px;
+}
+aside p{
+    color: white;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+aside a{
+    color:white;
+    font-size: 20px;
+    text-decoration:none;
+}
+aside a:hover{
+    color:yellow;
+    text-decoration: none;
+}
+section{
+    background-color: white;
+    padding:10px;
+    margin-left:-15px;
+}
+
+footer{
+    background-color: #006101;
+    height:30vh;
+}
+
+.checkbtn{
+    font-size: 40px;
+    color: #fff;
+    float: left;
+    line-height: 70px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.datos, .datos2{
+    padding:20px; 
+}
+
+
+.linkCard{
+    text-decoration: none;
+    color: black;
+    
+}
+
+.tarjeta{
+    transition: transform .2s;
+    -webkit-box-shadow: 10px 10px 26px -14px rgba(0,0,0,0.33);
+    -moz-box-shadow: 10px 10px 26px -14px rgba(0,0,0,0.33);
+    box-shadow: 10px 10px 26px -14px rgba(0,0,0,0.33);
+    margin: 15px;
+}
+  
+.tarjeta:hover {
+    transform: scale(1.05); 
+    background-color: #349704;
+    color: white;
+}
+
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 858px){
+    .enlace{
+        font-size: 20px;
+        font-family:Arial, Helvetica, sans-serif; 
+    }
+    section{
+        margin-left:0px;
+    }
+    footer{
+        height: 80vh;
+        padding:20px;
+        justify-content:center;
+    }
+    .datos{
+        height:25vh;
+    }
+    .datos2{
+        height:15vh;
+    }
+    .tarjeta{
+        margin: 15px;
+    }
+}
+
+
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (width: 768px){
+
+    footer{
+        height: 30vh;
+    }
+}

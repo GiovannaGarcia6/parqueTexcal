@@ -1,0 +1,293 @@
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+   
+}
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 5px 30px;
+    color: white;
+    text-decoration: none;
+    font-family:cursive;
+    font-size: 25px;
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+}
+ 
+.link:hover{
+    color: white;
+    background-color: #FBB034;
+    transition: .5s;
+    text-decoration: none;
+    padding: 7px 13px;
+    border-radius: 3px;
+}
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 150px;}
+/*Se le añade un color de fondo al nav y un tamaño*/
+nav{
+    background:#006101;
+    height: 9vh;
+}
+/*Los ul del nav se a linean a la derecha*/ 
+nav ul{
+    float: right;
+    margin-right: 20px;
+}
+nav ul li{
+    display: inline-block;
+    line-height: 60px;
+    margin: 0 5px;
+}
+/*Estilos para los enlaces del nav que se encuentran en li*/
+nav ul li a{
+    color: #fff;
+    font-size: 18px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+/*Estilos para los enlaces del nav que se encuentran en li pero que son seleccionados*/
+li a:hover{
+    background: #FBB034;
+    transition: .5s;
+    color: white;
+    text-decoration: none;
+}
+.checkbtn{
+    font-size: 30px;
+    color: #fff;
+    float: right;
+    line-height: 60px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+#check{display: none;}
+/*Estilos para el section que se le da un tamaño y un fondo el cual solo se repite en eje x*/
+section{
+    background-color: white;
+    height: auto;
+    padding: 30px;
+}
+
+aside{
+    background-color: #349704;
+    text-align: center;
+    padding:10px;
+}
+aside p{
+    color: white;
+    font-size: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.tituloSeccion{
+    font-size: 35px;
+}
+
+.tituloSeccion p{
+    border-bottom: 5px solid #349704;
+}
+.redes{
+    background-color: #349704;
+    height:10vh;
+}
+.contenido{
+    padding: 50px;
+}
+footer{
+    background-color: #006101;
+    
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.tarifa{
+    margin-bottom: 10px;
+}
+.cabeceraTarifa{
+    background-color: #349704;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border: 5px solid #349704;
+    justify-content:center;
+    display: flex;
+    color: white;
+    font-size: 20px;
+
+}
+.cuerpoTarifa{
+    padding: 5px;
+    background-color:#79e045;
+    height: 60px;
+    justify-content:center;
+    display: flex;
+    font-size: 25px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.horario, .producto{
+    font-size: 20px;
+    border: 1px solid rgba(174, 174, 174, 0.678);
+    border-radius: 15px;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+.comentario{
+    font-size: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.txtComentario{
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.seccionComentarios{
+    padding: 15px;
+}
+#circulo{
+    text-align: center;
+    color: black;
+    height:30px;
+    width:30px;
+    border-radius:50px;
+}
+
+/*.cabeceraTarifa{
+    box-shadow: 10px 0px 26px -14px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 0px 26px -14px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 0px 26px -14px rgba(0,0,0,0.75);
+}*/
+
+.publicacion, .comentario, .horario, .producto{
+    transition: transform .2s;
+
+    -webkit-box-shadow: 10px 10px 26px -14px rgba(0,0,0,0.33);
+    -moz-box-shadow: 10px 10px 26px -14px rgba(0,0,0,0.33);
+    box-shadow: 10px 10px 26px -14px rgba(0,0,0,0.33);
+}
+
+.videoImagen{
+    padding: 30px;
+    margin-left: 30px;
+}
+.recurso{
+    height: 350px;
+    width: 100%;
+}
+.textoPublicacion{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+.tituloPubli{
+    font-size: 25px;
+}
+.descripPubli{
+    font-size: 20px;
+}
+
+.linkCard{
+    text-decoration: none;
+    color: black;
+}
+
+.producto:hover {
+    transform: scale(1.05); 
+    background-color:#349704;
+    color: white;
+    font-style:italic;
+    font-size: 20px;
+}
+/*Media para dispositivos con una anchura máx. de 952px*/ 
+@media (max-width: 952px){
+    .enlace{padding-left: 20px;}
+    nav ul li a{font-size: 16px;}
+}
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 858px){
+    .enlace{
+        font-size: 20px;
+        font-family:Arial, Helvetica, sans-serif; 
+    }
+    .checkbtn{
+        display: block;
+    }
+    .card{
+      z-index: 2;
+    }
+    ul{
+      position: fixed;
+      z-index: 3;
+      width: 100%;
+      height: 100vh;
+      background-color: #349704;
+      top: 60px;
+      left: -100%;
+      text-align: center;
+      transition: all .5s;
+  
+    }
+    nav ul li{
+      display: block;
+      margin: 50px 0;
+      line-height: 30px;
+    }
+    nav ul li a{font-size: 20px;}
+    li a:hover{
+      color: white;
+      background-color: #FBB034;
+    }
+    #check:checked ~ ul{ left:0;}
+
+    .datos{
+        margin: 20px;
+        height:30vh;
+    }
+
+    .datos2{
+        margin: 20px;
+        height:15vh;
+    }
+    .datos3{
+        margin: 20px;
+        height:40vh;
+    }
+    .tarifa{
+        margin-top: 25px;
+    }
+    .recurso{
+        height: 200px;
+        width: 85%;
+    }
+    .tituloPubli{
+        font-size: 20px;
+        padding-left:  30px;
+        padding-right:  30px;
+    }
+    .descripPubli{
+        padding-left:  30px;
+        padding-right:  30px;
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+}

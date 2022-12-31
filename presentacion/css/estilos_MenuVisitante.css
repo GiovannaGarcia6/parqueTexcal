@@ -1,0 +1,9 @@
+section{
+    height: 66vh;
+}
+
+@media (max-width: 858px){
+    section{
+       height: 120vh;
+    }
+}

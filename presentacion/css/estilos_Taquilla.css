@@ -1,0 +1,123 @@
+/*Estio que se le aplica a toda la página*/
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/*Se oculta el overflow en el eje x del body*/
+body{
+    overflow-x:hidden;
+}
+
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+    position: absolute;
+    padding: 10px 40px;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 140px;}
+
+/*Estilos del navbar de la página*/
+nav{
+    background: #006101;
+    height:10vh;
+}
+
+/*Estilos del aside de la página*/
+aside{
+    background-color:#349704;
+    height: 8vh;
+    padding: 10px; 
+}
+
+/*Estilos del los enlaces que se encuentren en el aside*/
+aside a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    float:right;
+    margin-right:15px;  
+}
+
+/*Estilos del los enlaces al pasar por ellos*/
+aside a:hover{
+    color:#FFD607;
+}
+
+/*Estilos del section de la página*/
+section{
+    background-color: white;
+    padding:25px;
+}
+
+/*Estilos del footer de la página*/
+footer{
+    background-color: #006101;
+    height:35vh;
+}
+.footer1{
+    background-color:#349704;
+    height: 8vh;
+}
+/*Estilos del buscador de la página*/
+.buscador{
+    border-radius: 5px;
+    padding: 15px;
+    -webkit-box-shadow: 10px 10px 19px -3px rgba(0,0,0,0.27);
+    -moz-box-shadow: 10px 10px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 10px 10px 19px -3px rgba(0,0,0,0.27);
+}
+
+/*Estilos del botón agregar*/
+.btnAgregar{
+    background-color:#349704;
+    border-radius: 5px;
+    color:white;
+    font-size:15px;
+    -webkit-box-shadow: 10px 10px 16px 0px rgba(0,97,1,1);
+    -moz-box-shadow: 10px 10px 16px 0px rgba(0,97,1,1);
+    box-shadow: 10px 10px 16px 0px rgba(0,97,1,1);
+}
+
+/*Estilos del botón agregar al pasa el mouse por encima*/
+.btnAgregar:hover{
+    background-color:#FFD607;
+    border-radius: 5px;
+    color:black;
+    -webkit-box-shadow: 10px 10px 16px 0px rgba(255,214,7,0.66);
+    -moz-box-shadow: 10px 10px 16px 0px rgba(255,214,7,0.66);
+    box-shadow: 10px 10px 16px 0px rgba(255,214,7,0.66);
+}
+
+.datos, .datos2{
+    padding:20px; 
+}
+
+/*Media para dispositivos con una anchura máx. de 952px*/
+@media (max-width: 952px){
+    .enlace{padding-left: 20px;}
+}
+/*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 768px){
+    .enlace{font-size: 20px;}
+    .datos1{
+        height:25vh;
+    }
+    .datos2{
+        height:15vh;      
+    }
+    form input, form button{
+        margin-top: 5px;
+    }
+
+    footer{
+        height:80vh;
+    }
+}

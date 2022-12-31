@@ -1,0 +1,231 @@
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+/*Se le quita la decoración al enlace, se le asigna un tipo de letra y tamaño*/  
+.enlace{
+  position: absolute;
+  padding: 5px 30px;
+  color: white;
+  text-decoration: none;
+  font-family:cursive;
+  font-size: 25px;
+}
+
+.enlace:hover{
+  color: white;
+  text-decoration: none;
+}
+
+.link{
+  color: white;
+  text-decoration: none;
+}
+
+.link:hover{
+  color: white;
+  background-color: #349704;
+  transition: .5s;
+  text-decoration: none;
+  padding: 7px 13px;
+  border-radius: 3px;
+}
+
+/*Tamaño del logo*/ 
+.logo{height: 50px;}
+.logoFooter{height: 150px;}
+
+/*Se le añade un color de fondo al nav y un tamaño*/
+nav{
+    background: #006101;
+    height: 9vh;
+}
+  /*Los ul del nav se a linean a la derecha*/ 
+  nav ul{
+    float: right;
+    margin-right: 20px;
+  }
+  nav ul li{
+    display: inline-block;
+    line-height: 60px;
+    margin: 0 5px;
+  }
+  /*Estilos para los enlaces del nav que se encuentran en li*/
+  nav ul li a{
+    color: #fff;
+    font-size: 18px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  /*Estilos para los enlaces del nav que se encuentran en li pero que son seleccionados*/
+li a:hover{
+    background: #FBB034;
+    transition: .5s;
+    color: white;
+    text-decoration: none;
+}
+.checkbtn{
+  font-size: 30px;
+  color: #fff;
+  float: right;
+  line-height: 60px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{display: none;}
+/*Estilos para el section que se le da un tamaño y un fondo el cual solo se repite en eje x*/
+section{
+  background-color: white;
+  height: auto;
+  padding: 30px;
+  justify-content: center;
+  display:flex;
+}
+
+aside{
+  background-color: #349704;
+  text-align: center;
+  padding:10px;
+  height: 8vh;
+}
+#alerta{
+  margin-top: 10px;
+}
+.formulario{
+  padding:25px;
+  border-radius:20px;
+  border-left: 2px solid #349704;
+  border-right: 2px solid #349704;
+  border-top: 15px solid #349704;
+  border-bottom: 15px solid #349704;
+}
+.formulario h2{
+  color: grey;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.formulario input{
+  border-left: 2px solid #349704;
+  border-right: 2px solid #349704;
+  border-top: 2px solid #349704;
+  border-bottom: 2px solid #349704;
+}
+.formulario span{
+  border-left: 2px solid #349704;
+  border-top: 2px solid #349704;
+  border-bottom: 2px solid #349704;
+  background-color: #a8d860;
+}
+
+.input-group{
+  padding-top:10px;
+}
+
+.input-group-text{
+  width: 10%;
+}
+
+.btnMostrarContra{
+  border-top: 2px solid #349704;
+  border-bottom: 2px solid #349704;
+  border-right: 2px solid #349704;
+  border-left: 2px solid #349704;
+  background-color: #a8d860;
+  border-radius: 5px;
+  width: 10%;
+}
+.btnEntrar{
+  margin-top: 10px;
+  width: 100%;
+  background-color: #349704;
+  border: none;
+  color: #fff;
+}
+
+
+.btnEntrar:hover{
+  background-color: #41c400;
+}
+
+.user{
+  color: #349704;
+  font-size: 100px;
+}
+
+.icono{
+  color: #349704;
+}
+
+.redes{
+    background-color: #349704;
+    height:10vh;
+}
+footer{
+    background-color: #006101;
+    
+}
+
+body{
+    overflow-x:hidden;
+}
+
+.linkForm{
+  text-decoration: none;
+  color: black;
+}
+.linkForm:hover{
+  color:#006101;
+}
+/*Media para dispositivos con una anchura máx. de 952px*/ 
+@media (max-width: 952px){
+    .enlace{padding-left: 20px;}
+    nav ul li a{font-size: 16px;}
+}
+  /*Media para dispositivos con una anchura máx. de 858px*/
+@media (max-width: 858px){
+  .enlace{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif; 
+  }
+
+  .checkbtn{display: block;}
+  .card{z-index: 2;}
+  ul{
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    height: 100vh;
+    background-color: #349704;
+    top: 60px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{font-size: 20px;}
+  li a:hover{
+    color: white;
+    background-color: #6dcc3e;
+  }
+  #check:checked ~ ul{ left:0;}
+  .datos{
+    height:30vh;
+  }
+  .datos2{
+    height:15vh;
+  }
+  .datos3{
+    height:40vh;
+  }
+  .input-group-text{
+    width: 15%;   
+  }
+}
