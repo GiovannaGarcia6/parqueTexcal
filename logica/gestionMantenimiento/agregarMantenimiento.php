@@ -6,8 +6,8 @@
 
     $id = htmlentities($_GET['id']);
     //Se obtienen todos los datos que se mandaron al formulario.
-    $nombre = htmlentities($_POST['nombre']);
-    $descripcion = htmlentities($_POST['desc']);
+    $nombre = html_entity_decode($_POST['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8");
+    $descripcion = html_entity_decode($_POST['desc'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     
     if(empty($descripcion)){
         $_SESSION['status'] = "Debe agregar una descripción al mantenimiento.";

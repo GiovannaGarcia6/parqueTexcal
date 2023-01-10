@@ -4,7 +4,7 @@
     session_start();//Se inicia la sesión.
     $id=$_POST['id'];//Se obtiene el id del administrador
     //Se obtienen todos los datos que se mandaron al formulario.
-    $nombre = $_POST['nombre'];
+    $nombre = html_entity_decode($_POST['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $precio = $_POST['precio'];
     $servicio = $_POST['servicio'];
 

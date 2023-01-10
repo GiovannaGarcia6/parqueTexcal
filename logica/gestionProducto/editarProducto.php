@@ -6,9 +6,9 @@
     $idProducto = htmlentities($_POST['idProducto']);
     $idTienda = htmlentities($_POST['idTienda']);
     $idTrabajador = htmlentities($_POST['idTrabajador']);
-    $nombreProducto = htmlentities($_POST['nombreProducto']);
+    $nombreProducto = html_entity_decode($_POST['nombreProducto'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $precioProducto = htmlentities($_POST['precioProducto']);
-    $descProducto = htmlentities($_POST['descProducto']);
+    $descProducto = html_entity_decode($_POST['descProducto'], ENT_QUOTES | ENT_HTML401, "UTF-8");;
     $archivo = $_FILES['archivo']['tmp_name']; 
    
     $existe = consultarProductoID($nombreProducto, $idTienda);

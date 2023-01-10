@@ -5,7 +5,7 @@
     $id=$_POST['id'];//Se obtiene el id del administrador
     //Se obtiene los datos que se enviaron del formulario.
     $idTarifa = $_POST['idTarifa'];
-    $nombre = $_POST['nombreTar'];
+    $nombre = html_entity_decode($_POST['nombreTar'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $precio = $_POST['precioTar'];
     $servicio = $_POST['servicio'];
     $existe = consultarBoletoXServicio($servicio, $nombre, $idTarifa);

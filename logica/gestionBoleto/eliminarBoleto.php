@@ -8,7 +8,7 @@
     //Obtenemos el id del boleto
     $idTarifa = $_GET['idBoleto'];
     
-    $resultado = eliminarBoleto($id,$idTarifa);
+    $resultado = eliminarBoleto($idTarifa);
 
     if($resultado === 1){
         $_SESSION['status'] = "Tarifa eliminada con éxito.";

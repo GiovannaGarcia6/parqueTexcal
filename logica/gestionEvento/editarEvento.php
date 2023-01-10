@@ -11,7 +11,7 @@
     $h_inicio          = $_POST['horaInicioM'];
     $h_fin             = $_POST['horaFinM']; 
     $color_evento      = htmlentities($_POST['colorM']);
-    $descripcion       = $_POST['descripcionEventoM'];
+    $descripcion       = html_entity_decode($_POST['descripcionEventoM'], ENT_QUOTES | ENT_HTML401, "UTF-8");
 
 
     $fechaI = "".$f_inicio." ".$h_inicio;

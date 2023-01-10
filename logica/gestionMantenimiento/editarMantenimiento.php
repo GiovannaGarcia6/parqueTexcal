@@ -4,8 +4,8 @@
     //Se obtienen todos los datos que se mandaron al formulario.
     $id = htmlentities($_POST['id']);
     $idMantenimiento = htmlentities($_POST['idMantenimiento']);
-    $nombre = htmlentities($_POST['nombre']);
-    $descripcion = htmlentities($_POST['desc']);
+    $nombre = html_entity_decode($_POST['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8");
+    $descripcion = html_entity_decode($_POST['desc'], ENT_QUOTES | ENT_HTML401, "UTF-8");
 
     if(empty($descripcion)){
         $_SESSION['status'] = "Debe agregar una descripción a la tarea.";
@@ -15,8 +15,9 @@
 
         $resultadoEditar = editarMantenimiento($nombre, $descripcion,$idMantenimiento);
 
-        if($$resultadoEditar === 1){
+        if($resultadoEditar === 1){
             $_SESSION['status'] = "Mantenimiento actualizado con éxito.";
+            
             header("Location: ../../presentacion/administrador/mantenimientos/mantenimientos.php?id=".$id);
         }else{
             $_SESSION['status'] = "Hubo un error al actualizar el mantenimiento.";

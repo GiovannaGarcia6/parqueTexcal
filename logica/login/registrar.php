@@ -3,9 +3,9 @@
     require '../../datos/login/funciones.php';
     session_start();//Se inicia la sesión.
     //Se obtienen todos los datos que se mandaron al formulario.
-    $nombre = htmlentities($_POST['nombre']);
-    $apellidoPaterno = htmlentities($_POST['apPaterno']);
-    $apellidoMaterno = htmlentities($_POST['apMaterno']);
+    $nombre = html_entity_decode($_POST['nombre'], ENT_QUOTES | ENT_HTML401, "UTF-8");
+    $apellidoPaterno = html_entity_decode($_POST['apPaterno'], ENT_QUOTES | ENT_HTML401, "UTF-8");
+    $apellidoMaterno = html_entity_decode($_POST['apMaterno'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $correo = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
     $contrasena = htmlentities($_POST['contra']);
     

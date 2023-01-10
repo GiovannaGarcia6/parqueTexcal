@@ -139,7 +139,7 @@
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
         $query  = "Select count(*) as contar from tarea where tituloTarea = '".$titulo."' and idMantenimiento = '".$idMantenimiento."'";
-        $consulta =  mysqli_query($conn, $sql);
+        $consulta =  mysqli_query($conn, $query);
         $array = mysqli_fetch_array($consulta);
     
         return $array['contar'];

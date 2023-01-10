@@ -33,6 +33,8 @@
                 <a href="../../menu/menuAdministrador.php?id=<?php echo $id;?>">Volver</a>
             </aside>
         </div>
+
+        <!--Sección en donde se encuentra un formulario que funciona como buscador-->
         <div class="row">
             <section id="section"  class="col-12 col-sm-12 col-md-12">
                 <div class="card col-10 offset-1 buscador">
@@ -103,9 +105,11 @@
                         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/logica/gestionPublicacion/publicacionAdmin.php';
                         //Se verifica que exista la variable buscador enviada por el método POST
                         if(isset($_POST['buscador'])){
+                            //Si existe se almacena lo que contiene y se llama a la función mostrarPublicaciones
                             $buscador = htmlentities($_POST['buscador']);
                             mostrarPublicaciones($buscador,$id);
                         }else{
+                            //Sino existe, se manda el parámetro vacío
                             mostrarPublicaciones("",$id);
                         }
                     ?>
@@ -162,7 +166,8 @@
             </footer>
         </div>
         
-        <script src="../../../logica/js/eliminarPublicacion.js"></script>
+        <!--Scripts-->
+        <script src="../../../logica/js/eliminarPublicacion.js"></script> <!--Script para realizar la eliminación de una publicación-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         
     </body>

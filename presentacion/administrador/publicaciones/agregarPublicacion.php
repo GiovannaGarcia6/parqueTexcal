@@ -20,11 +20,13 @@
         <link rel="stylesheet" href="../../css/estilos_AgregarPublicacion.css">
     </head>
     <body class="grid-container">
+        <!--Navbar de la pagina, la cual contiene el logo y nombre del parque-->
         <div class="row">
             <nav class="col-xs-12 col-sm-12 col-md-12">
                 <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a> 
             </nav>
         </div>
+        <!--Aside de la página en la que se encuentra el enlace de volver, esté redirige a la gestión de las publicaciones-->
         <div class="row">
             <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
                 <a href="./publicaciones.php?id=<?php echo $id;?>">Volver</a>
@@ -33,9 +35,11 @@
         <div class="row">
             <section id="section"  class="col-12 col-sm-12 col-md-12">
                 <div class="col-11 col-sm-8 col-md-4 formulario">
+                    <!--Formulario para realizar el registro de una nueva publicación-->
                     <form action="../../../logica/gestionPublicacion/agregarPublicacion.php" method="post" enctype="multipart/form-data" > 
                         <h2  style="text-align: center">NUEVA PUBLICACIÓN</h2>
-                        <!--Se muestra el mensaje de éxito o de error-->
+                        <!--Dentro del formulario se muestra el mensaje una vez haya devuelto el resultado la capa lógica.
+                        Este mensaje puede ser el de éxito o un mensaje de error.-->
                         <?php if(isset($_SESSION['status'])){ 
                                 if($_SESSION['status']=='Publicacion agregada con éxito.'){
                         ?>
@@ -48,27 +52,32 @@
                                     </div> <br>     
                         <?php   } header("refresh:1; url = ./agregarPublicacion.php?id=".$id);unset($_SESSION['status']); } ?><!--Se elimina la variable de sesión-->
                         
+                        <!--Input de tipo hidden que contiene el valor del id del admin-->
                         <input type="hidden" name="id" value="<?php echo $id;?>">
+
+                        <!--Selector de servicios-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id=""><i class="fa-solid fa-users icono"></i></span>
                             <select class="form-select" name="servicio" aria-label="Username" required>
                                 <option value="">Seleccione un servicio</option>
                                 <?php
+                                    //Archivo que contiene las funciones de las publicaciones
                                     require $_SERVER['DOCUMENT_ROOT'].'/sistema web/logica/gestionPublicacion/publicacionAdmin.php';
+                                    //Se llama a la función que permite mostrar a los servicios registrados en la base de datos
                                     mostrarServicio("False",0);
                                 ?>
                             </select>
-                          
                         </div>
+                        <!--Titulo de la publicación-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-file-lines icono"></i></span>
                             <input type="text" autocomplete="off" class="form-control" name="titulo" placeholder="Título de la publicación" aria-label="Username" aria-describedby="addon-wrapping" required>
                         </div>
+                        <!--Descripción de la publicación-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""><i class="fa-solid fa-align-left icono"></i></span>
                             <textarea class="form-control" placeholder="Descripción de la publicación" name="publicacion" style="height: 100px"></textarea>
                         </div>
-                        
                         <!--Selector del tipo de archivo-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text"><i class="fa-solid fa-photo-film icono"></i></span>
@@ -77,21 +86,20 @@
                                 <option value="Imagen">Imagen</option>
                             </select> 
                         </div>
-                        
+                        <!--Input para subir la imagen-->
                         <div id="imagen" class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-link icono"></i></span>
                             <input type="file"  class="form-control" name="imagen"  aria-label="Username" aria-describedby="addon-wrapping" >
                         </div>
-                        
+                        <!--Input para el enlace del video-->
                         <div id="video" class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-link icono"></i></span>
                             <input type="text" autocomplete="off" class="form-control" name="video" placeholder="Enlace del video de Youtube" aria-label="Username" aria-describedby="addon-wrapping" >
                         </div>    
-
+                        <!--Botón para realizar el registro de la publicación-->
                         <button class="btnRegistrar btn-lg" type="submit">Registrar</button>
                     </form>       
                 </div>
-                
             </section>  
         </div>
        <!-- Footer de la página en la que contiene el logo y los datos de la empresa-->
@@ -118,13 +126,17 @@
                 </div>   
             </footer>
         </div>
+        <!--Este script permite ocultar por primera vez ocultar el input para subir la imagen,
+        ya que al principio esta activa la opción del video-->
         <script>
             var inputImagen = document.getElementById('imagen');
             var inputVideo = document.getElementById('video');
             inputVideo.style.display = ''; // hide
             inputImagen.style.display = 'none'; // hide
         </script>
-        <script src="../../../logica/js/habilitarInputs.js"></script><!--Determina si se habilita o no el input-->
+        <!--Una vez cambie el estado del selector procedera a utilizar este script que determinara que inputs habilitar-->
+        <script src="../../../logica/js/habilitarInputs.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>
+

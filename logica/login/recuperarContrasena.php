@@ -2,9 +2,9 @@
     //Insertamos código de otro archivo el cual contiene la conexión de la BD.
     require '../../datos/login/funciones.php';
    
-    session_start();//Se inicia la sesión.
-    //Se obtienen todos los datos que se mandaron al formulario.
+    session_start();//Se inicia la sesión
 
+    //Se obtienen todos los datos que se mandaron al formulario.
     $correo = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
  
     //Se realiza un conteo de cuantos vistantes tienen el mismo correo.
@@ -29,9 +29,11 @@
 
         $asunto = 'Recuperación de Contraseña';
 
+        //Se envía el mensaje
         mail($correo, $asunto, utf8_decode($message), $header);
 
         $_SESSION['status'] = "Revisa la bandeja de tu correo electrónico.";
+        //Se redirige al formulario de recuperar contraseña
         header("Location: ../../presentacion/login/recuperarContrasena.php");
 
 
@@ -59,15 +61,18 @@
 
             $asunto = 'Recuperación de Contraseña';
 
+            //Se envía el correo
             mail($correo, $asunto, utf8_decode($message), $header);
-    
+            
+            //Se crea la variable de sesión con el mensaje correspondiente
             $_SESSION['status'] = "Revisa la bandeja de tu correo electrónico.";
+            //Se redirige al formulario de recuperar contraseña
             header("Location: ../../presentacion/login/recuperarContrasena.php");
 
         }else{
-
-            //Se manda el mensaje de error y se redirigirse a la página de registrar.
+            //Se crea la variable de sesión con el mensaje correspondiente
             $_SESSION['status'] = "Hubo un error al recuperar la contraseña.";
+            //Se redirige al formulario de recuperar contraseña
             header("Location: ../../presentacion/login/recuperarContrasena.php");
         }
 

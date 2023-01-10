@@ -6,9 +6,9 @@
 
     $id = htmlentities($_POST['id']);
     $idTienda = htmlentities($_POST['idTienda']);
-    $nombreProducto = htmlentities($_POST['nombreProducto']);
+    $nombreProducto = html_entity_decode($_POST['nombreProducto'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $precioProducto = htmlentities($_POST['precioProducto']);
-    $descProducto = htmlentities($_POST['descProducto']);
+    $descProducto = html_entity_decode($_POST['descProducto'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $archivo = addslashes(file_get_contents( $_FILES['archivo']['tmp_name'])); 
     $tipoImagen = $_FILES['archivo']['type'];
     if(empty($descProducto)){

@@ -5,8 +5,8 @@
     $id = htmlentities($_GET['id']);
     $idMantenimiento = htmlentities($_GET['idMantenimiento']);
     //Se obtienen todos los datos que se mandaron al formulario.
-    $titulo = htmlentities($_POST['titulo']);
-    $desc = htmlentities($_POST['desc']);
+    $titulo = html_entity_decode($_POST['titulo'], ENT_QUOTES | ENT_HTML401, "UTF-8");
+    $desc = html_entity_decode($_POST['desc'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $estado = htmlentities($_POST['estado']);
     $fechInic = strtotime($_POST['inic']);
     $fechTerm = strtotime($_POST['term']);

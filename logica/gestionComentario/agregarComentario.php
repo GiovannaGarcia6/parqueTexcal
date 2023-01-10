@@ -6,7 +6,8 @@
     $idUsuario =  htmlentities($_POST['id']);
     $servicio =  htmlentities($_POST['servicio']);
     $puntuacion =  htmlentities($_POST['puntuacion']);
-    $comentario =  htmlentities($_POST['comentario']);
+    $comentario =  html_entity_decode($_POST['comentario'], ENT_QUOTES | ENT_HTML401, "UTF-8");
+
 
     if(empty($comentario)){
         $_SESSION['status'] = "Debe agregar su comentario";

@@ -7,17 +7,17 @@
         $idPublicacion = htmlentities($_GET['idPublicacion']);
         //Requerimos del archivo para realizar la conexión.
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
-        //Se crea un query para mostrar datos del boleto seleccionado para modificar.
+        //Se crea un query para mostrar datos de la publicación seleccionada para modificar.
         $buscarPub=mysqli_query($conn,"SELECT titulo, descripcion, tipoPublicacion, archivo,idServicio 
         FROM Publicacion WHERE idPublicacion ='".$idPublicacion."'");
         $filas=mysqli_fetch_array($buscarPub);
-        //Se obtienen los datos del boleto.
+        //Se obtienen los datos de la publicación.
         $titulo = $filas['titulo'];
         $descripcion = $filas['descripcion'];
         $tipoPublicacion = $filas['tipoPublicacion'];
         $archivo = $filas['archivo'];
         $idServicio = $filas['idServicio'];
-         mysqli_close($conn); //Se cierra la conexión de la bd.
+        mysqli_close($conn); //Se cierra la conexión de la bd.
     }else{
         //En caso de que no se encuentre la variable de sesión se redirige al inicio de sesión.
         header("Location: ../../login/login.php");
@@ -34,11 +34,13 @@
         <link rel="stylesheet" href="../../css/estilos_AgregarPublicacion.css">
     </head>
     <body class="grid-container">
+        <!--Navbar de la pagina, la cual contiene el logo y nombre del parque-->
         <div class="row">
             <nav class="col-xs-12 col-sm-12 col-md-12">
                 <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a> 
             </nav>
         </div>
+        <!--Aside de la página en la que se encuentra el enlace de volver, esté redirige a la gestión de las publicaciones-->
         <div class="row">
             <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
                 <a href="./publicaciones.php?id=<?php echo $id;?>">Volver</a>
@@ -47,22 +49,28 @@
         <div class="row">
             <section id="section"  class="col-12 col-sm-12 col-md-12">
                 <div class="col-11 col-sm-8 col-md-4 formulario">
+                    <!--Formulario para realizar la actualización de una publicación que el administrador seleccione-->
                     <form action="../../../logica/gestionPublicacion/editarPublicacion.php" method="post" enctype="multipart/form-data" > 
                         <h2  style="text-align: center">EDITAR PUBLICACIÓN</h2>
-                        <!--Se muestra el mensaje de éxito o de error-->
+                        <!--en esta parte se verifica que exista la variable de sesión llamada status
+                        la cual se encargará de muestrar el mensaje de éxito o de error que se haya enviado de la capa lógica-->
                         <?php  
                             if(isset($_SESSION['status'])){ 
                         ?>
                                 <div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert">
                                     <?php echo $_SESSION['status']; ?>
-                                </div> <br>     
+                                </div> <br>  
+                        <!--una vez muestre el mensaje, pasará un segundoy la pagína se refrescará para eliminar el mensaje-->   
                         <?php
                                 header("refresh:1; url = ./editarPublicacion.php?id=".$id."&idPublicacion=".$idPublicacion);
                                 unset($_SESSION['status']); //Se elimina la variable de sesión
                             } 
                         ?>
+                        <!--Input de tipo hidden que contiene el id de la publicación-->   
                         <input type="hidden" name="idPublicacion" value="<?php echo $idPublicacion;?>">
+                        <!--Input tipo hidden que contiene el id del administrador-->   
                         <input type="hidden" name="idAdmin" value="<?php echo $id;?>">
+                        <!--Selector del servicio-->   
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id=""><i class="fa-solid fa-users icono"></i></span>
                             <select class="form-select" name="servicio" aria-label="Username" required>
@@ -74,10 +82,12 @@
                             </select>
                           
                         </div>
+                        <!--Titulo de la publicación-->   
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-file-lines icono"></i></span>
                             <input type="text" autocomplete="off" value="<?php echo $titulo;?>" class="form-control" name="titulo" placeholder="Título de la publicación" aria-label="Username" aria-describedby="addon-wrapping" required>
                         </div>
+                        <!--Textarea para la descripción de la publicación-->   
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""><i class="fa-solid fa-align-left icono"></i></span>
                             <textarea class="form-control" placeholder="Descripción de la publicación" name="publicacion" style="height: 100px"><?php echo $descripcion?></textarea>
@@ -88,14 +98,14 @@
                             <span class="input-group-text"><i class="fa-solid fa-photo-film icono"></i></span>
                             <select class="form-select" name="tipoPublicacion" aria-label="Username" onchange="habilitar(this);"required>
                                 <?php
-                                        //Si es el mismo tipo que se obtuvo al inicio se muestra como seleccionada.
-                                        if($tipoPublicacion === "Video"){
-                                            echo '<option selected="selected" value="Video">Video</option>';
-                                            echo '<option value="Imagen">Imagen</option>';    
-                                        }else{
-                                            echo '<option value="Video">Video</option>';
-                                            echo '<option selected="selected" value="Imagen">Imagen</option>';    
-                                        }
+                                    //Si es el mismo tipo que se obtuvo al inicio se muestra como seleccionada.
+                                    if($tipoPublicacion === "Video"){
+                                        echo '<option selected="selected" value="Video">Video</option>';
+                                        echo '<option value="Imagen">Imagen</option>';    
+                                    }else{
+                                        echo '<option value="Video">Video</option>';
+                                        echo '<option selected="selected" value="Imagen">Imagen</option>';    
+                                    }
                                 ?>
                             </select> 
                         </div>
@@ -145,9 +155,7 @@
                                 
                             }
                         ?>
-                        
-                       
-
+                        <!--Botón para realizar la actualización de la publicación-->   
                         <button class="btnRegistrar btn-lg" type="submit">Actualizar</button>
                     </form>       
                 </div>
@@ -178,6 +186,7 @@
                 </div>   
             </footer>
         </div>
+        <!--EL siguiente script permite mostrar el input de la imagen o del video según sea el caso cuando el selector cambie de estado-->   
         <script>
             var inputImagen = document.getElementById('imagen');
             var inputVideo= document.getElementById('video');
@@ -188,13 +197,11 @@
                 inputVideo.style.display = '';
                 inputImagen.style.display = 'none';
                 imagenMostrada.style.display = 'none';
-                console.log("Video visible");
             }else{
                 //Si el video esta oculto, la imagen esta visible
                 imagenMostrada.style.display = '';
                 inputImagen.style.display = '';
                 inputVideo.style.display = 'none';
-                console.log("Video oculto");
             }
         </script>
         <script src="../../../logica/js/habilitarInputsImagen.js"></script><!--Determina si se habilita o no el input-->

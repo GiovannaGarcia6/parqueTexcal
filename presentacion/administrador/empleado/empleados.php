@@ -1,5 +1,6 @@
 <?php
     session_start();//Se inicia la sesión.
+
     //Se verifica que exista la variable de sesión para que el usuario pueda acceder al menú.
     if(isset($_SESSION['usuario'])){
         //Se obtiene el id del usuario
@@ -35,6 +36,7 @@
         </div>
         <div class="row">
             <section id="section"  class="col-12 col-sm-12 col-md-12">
+                <!--Buscador que se encuentra en la parte superior, este contiene un formulario-->
                 <div class="card col-10 offset-1 buscador">
                     <div class="row">
                         <div class="col-2 col-sm-1">
@@ -43,12 +45,14 @@
                         <div class="col-4 col-sm-3">
                             <label class="col-form-label">Empleados</label>
                         </div>
-                        
+                        <!--Formulario-->
                         <form class="col-12 col-sm-6" method="post">
                             <div class="row">   
+                                <!--Frase o palabra a buscar-->
                                 <div class="col-9 col-sm-10">
                                     <input type="text" autocomplete="off" name="buscador" id="buscador" placeholder="Buscador" class="form-control">
                                 </div>
+                                <!--Botón para realizar la búsqueda-->
                                 <div class="col-1 ">
                                     <button type="submit" class="btn btn-primary btnBuscar"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </div>
@@ -84,7 +88,7 @@
                             </div>
                             <br>     
                 <?php   } 
-                        //Se refresca la página 2 segundos después para eliminar el mensaje. 
+                        //Se refresca la página 1 segundo después para eliminar el mensaje. 
                         header("refresh:1; url = ./empleados.php?id=".$id);
                         //Se elimina la variable de sesión
                         unset($_SESSION['status']); 
@@ -104,9 +108,12 @@
                     require $_SERVER['DOCUMENT_ROOT'].'/sistema web/logica/gestionEmpleado/empleados.php';
                     //Se verifica que exista la variable buscador enviada por el método POST
                     if(isset($_POST['buscador'])){
+                        //Si existe se almacena en una variable lo del input
                         $buscador = htmlentities($_POST['buscador']);
+                        //Se llama a la función de la capa lógica
                         mostrarEmpleados($buscador,$id);
                     }else{
+                        //Se llama a la función de la capa lógica
                         mostrarEmpleados("",$id);
                     }
                 ?>
@@ -145,6 +152,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 footer1"> </div>
                 </div>
+                <!--Logo-->
                 <div class="row footerRow">
                     <div class="col-xs-12 col-sm-12 col-md-3 datos1">
                         <div class="logo">
@@ -153,6 +161,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--Información de la ubicación del parque-->
                     <div class="col-xs-12 col-sm-12 col-md-9 datos2">
                         <div class="card-body ">
                             <p class="card-text" style="color:white; font-size:18px">© Derechos Reservados, Parque Estatal "El Texcal" 2022</p>
@@ -165,6 +174,6 @@
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        <script src="../../../logica/js/eliminarEmpleado.js"></script>
+        <script src="../../../logica/js/eliminarEmpleado.js"></script> <!--Script para eliminar un empleado-->
     </body>
 </html>

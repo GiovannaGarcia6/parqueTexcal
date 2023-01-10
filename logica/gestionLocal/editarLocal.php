@@ -4,7 +4,7 @@
     session_start();
     //Se obtiene los datos que se enviaron del formulario.
     $idNegocio = htmlentities($_POST['idNegocio']);
-    $nombreNegocio = htmlentities($_POST['nombreNegocio']);
+    $nombreNegocio = html_entity_decode($_POST['nombreNegocio'], ENT_QUOTES | ENT_HTML401, "UTF-8");
     $idVendedor = htmlentities($_POST['idVendedor']);
     
     $existe = existeLocalIgual($idNegocio,$nombreNegocio);

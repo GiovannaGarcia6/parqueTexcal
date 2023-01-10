@@ -3,14 +3,13 @@
   session_start();//Se inicia la sesión.
 
   $id                = htmlentities($_POST['idAdmin']);
-  $evento            = htmlentities($_POST['nombreEvento']);
+  $evento            = html_entity_decode($_POST['nombreEvento'], ENT_QUOTES | ENT_HTML401, "UTF-8");
   $f_inicio          = $_POST['fechaInicio'];
   $f_fin             = $_POST['fechaFin']; 
   $h_inicio          = $_POST['horaInicio'];
   $h_fin             = $_POST['horaFin']; 
   $color_evento      = htmlentities($_POST['color']);
-  $descripcion       = htmlentities($_POST['descripcionEvento']);
-
+  $descripcion =  html_entity_decode($_POST['descripcionEvento'], ENT_QUOTES | ENT_HTML401, "UTF-8");
 
   $fechaI = "".$f_inicio." ".$h_inicio;
   $fechaF = "".$f_fin." ".$h_fin;

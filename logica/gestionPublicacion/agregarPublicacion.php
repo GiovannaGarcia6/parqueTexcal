@@ -5,8 +5,8 @@
     //Se obtienen todos los datos que se mandaron al formulario.
     $idUsuario = htmlentities($_POST['id']);
     $servicio = htmlentities($_POST['servicio']);
-    $titulo = htmlentities($_POST['titulo']);
-    $descripcion = htmlentities($_POST['publicacion']);
+    $titulo = html_entity_decode($_POST['titulo'], ENT_QUOTES | ENT_HTML401, "UTF-8"); 
+    $descripcion = html_entity_decode($_POST['publicacion'], ENT_QUOTES | ENT_HTML401, "UTF-8"); 
     $tipoPublicacion = htmlentities($_POST['tipoPublicacion']);
 
     if(empty($descripcion)){

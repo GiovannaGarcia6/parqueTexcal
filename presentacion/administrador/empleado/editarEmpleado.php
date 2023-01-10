@@ -8,7 +8,7 @@
         //Requerimos del archivo para realizar la conexión.
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
-        $sql  = "Select count(*) as contar from trabajador where idTrabajador = '".$idTrabajador."'";
+        $sql  = "SELECT count(*) as contar from trabajador where idTrabajador = '".$idTrabajador."'";
         $consulta =  mysqli_query($conn, $sql);
         $array = mysqli_fetch_array($consulta);
         //Si es mayor a cero significa que la clave ya existe y debe redirigirse a la página de registrar.
@@ -41,11 +41,13 @@
         <link rel="stylesheet" href="../../css/estilos_AgregarEmpleado.css">
     </head>
     <body class="grid-container">
+        <!--Navbar de la pagina, la cual contiene el logo y nombre del parque-->
         <div class="row">
             <nav class="col-xs-12 col-sm-12 col-md-12">
                 <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a> 
             </nav>
         </div>
+        <!--Aside de la página en la que se encuentra el enlace de volver, esté redirige a la interfaz de los empleados-->
         <div class="row">
             <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
                 <a href="./empleados.php?id=<?php echo $id;?>">Volver</a>
@@ -72,6 +74,8 @@
                             <select class="form-select" name="tipoEmpleado" aria-label="Username" required>
                                 <option value="">Tipo de empleado</option>
                                 <?php 
+                                    //Este if anidado permite mostrar las opciones del selector dependiendo de
+                                    //el tipo de trabajador
                                     if($tipo === "Guia" ){
                                         echo '<option selected="selected" value="'.$tipo.'">'.$tipo.'</option>';
                                         echo '<option value="Vendedor">Vendedor</option>';
@@ -156,19 +160,7 @@
                 </div>   
             </footer>
         </div>
-        <script>
-            function mostrarContrasena(){
-                var tipo = document.getElementById("password");
-                var icono = document.getElementById("icono");
-                if(tipo.type == "password"){
-                    tipo.type = "text";
-                    icono.className ="fa-solid fa-eye-slash icono";
-                }else{
-                    tipo.type = "password";
-                    icono.className ="fa-solid fa-eye icono";
-                }
-            }
-        </script>
+        <script src="../../../logica/js/mostrarContra.js"></script>   <!--Script para mostrar y ocultar la contraseña-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>
