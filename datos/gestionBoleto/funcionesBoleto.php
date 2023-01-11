@@ -1,8 +1,8 @@
 <?php
     /*  
         Nombre de la función: buscadorBoleto
-        Entrada: Buscador
-        Salida: Resultado con los datos de la consulta
+        Entrada: Buscador(palabra o frase)
+        Salida: Resultado que contiene los registros de la consulta
 
         Descripción: La función realiza una consulta a la base de datos de acuerdo a lo que indique el buscador, para si obtener
         los registros que cumplan con las condiciones.
@@ -36,7 +36,6 @@
         return  $resultado; //Se retornan los registros 
 
         mysqli_close($conn);//Se cierra la conexión
-
     }
 
     /*  

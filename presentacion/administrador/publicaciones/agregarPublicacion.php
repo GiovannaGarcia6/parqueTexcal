@@ -131,8 +131,8 @@
         <script>
             var inputImagen = document.getElementById('imagen');
             var inputVideo = document.getElementById('video');
-            inputVideo.style.display = ''; // hide
-            inputImagen.style.display = 'none'; // hide
+            inputVideo.style.display = ''; //Mostrar
+            inputImagen.style.display = 'none'; //Ocultar
         </script>
         <!--Una vez cambie el estado del selector procedera a utilizar este script que determinara que inputs habilitar-->
         <script src="../../../logica/js/habilitarInputs.js"></script>

@@ -86,7 +86,7 @@
                             </div>
                             <br>     
                 <?php   } 
-                        //Se refresca la página 2 segundos después para eliminar el mensaje. 
+                        //Se refresca la página 1 segundo después para eliminar el mensaje. 
                         header("refresh:1; url = ./publicaciones.php?id=".$id);
                         //Se elimina la variable de sesión
                         unset($_SESSION['status']); 
