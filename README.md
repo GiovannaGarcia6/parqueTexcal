@@ -1,5 +1,5 @@
 # parqueTexcal
-Última versión del sistema del parque 
+Última versión del sistema del parque V.18
 
 Este es un proyecto de desarrollo web sobre la difusión del parque estatal “El Texcal” por medio de publicaciones e información actual que ayude a los visitantes a conocer los espacios y servicios con los que éste cuenta, además de llevar a cabo una correcta organización del personal para efectuar los distintos cambios y mantenimientos por el que éste atraviesa.
 
