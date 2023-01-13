@@ -1,4 +1,12 @@
 <?php
+    /*
+        Nombre de la función: mostrarPublicacion
+        Entrada: Nombre del servicio
+        Salida: Contenedores con la info de las publicaciones
+
+        Descripción: Esta función se encarga de mostrar las publicaciones de la página principal que ven todos los usuarios. 
+        Estos muestran solo el titulo de la publicación la descripción y el recurso visual.
+    */
     function mostrarPublicacion($servicio){
 
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionPublicacion/funcionesPublicacion.php';
@@ -33,7 +41,6 @@
                             }
                         echo "</div>";
                         echo "<div class='col-12 col-sm-5 textoPublicacion'>";
-                        
                             echo "<p class='tituloPubli'> <b> ".$row[1]." </b></p>"; 
                             echo "<p class='descripPubli'>".$row[2]."</p>"; 
                         echo "</div>";
