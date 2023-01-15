@@ -26,21 +26,24 @@
             $_SESSION['status'] = "La imagen debe ser de tipo jpeg, jpg o png.";
             header("Location: ../../presentacion/vendedor/productos/agregarProducto.php?id=".$id."&idTienda=".$idTienda);
         }else{
-            
+            //Se consulta si existte el nombre de ese producto
             $existe = consultarProductoXNombre($nombreProducto, $idTienda);
-            //Si es mayor a cero significa que la clave ya existe y debe redirigirse a la página de registrar.
+            //Si es mayor a cero significa que ya existe y debe redirigirse a la página de agregar producto.
             if($existe > 0 ){
                 $_SESSION['status'] = "El producto ya existe.";
                 header("Location: ../../presentacion/vendedor/productos/agregarProducto.php?id=".$id."&idTienda=".$idTienda);
                 exit();
             }else{
-                
+                //Sino existe, se realiza la inserción del nuevo producto
                 $resultadoInsertar = agregarProducto($nombreProducto, $precioProducto, $descProducto, $archivo, $idTienda);
+
+                //Se verfica que se haya realizado de manera exitosa el proceso de inserción
                 if($resultadoInsertar === 1){
+                    //Si fue exitoso se debe de mandar el mensaje correspondiente para hacerle saber al usuario
                     $_SESSION['status'] = "Producto agregado con éxito.";
                     header("Location: ../../presentacion/vendedor/productos/agregarProducto.php?id=".$id."&idTienda=".$idTienda);
                 }else{
-                    //Se manda el mensaje de error y se redirigirse a la página de registrar.
+                    //Se manda el mensaje de error y se redirigirse a la página de agregar producto.
                     $_SESSION['status'] = "Hubo un error al agregar.";
                     header("Location: ../../presentacion/vendedor/productos/agregarProducto.php?id=".$id."&idTienda=".$idTienda);
                 }

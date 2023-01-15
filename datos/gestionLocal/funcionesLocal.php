@@ -15,7 +15,7 @@
 
         if($buscador === ""){
             //si el buscador esta vacío se crea un sql para mostrar los datos de los
-            //de las tiendas almacenadas en la base de datos. 
+            //locales almacenados en la base de datos. 
             $sql = "SELECT idTienda, nombTienda from Tienda where idTrabajador=".$id;
 
         }else{

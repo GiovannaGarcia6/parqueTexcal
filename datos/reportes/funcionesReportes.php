@@ -1,6 +1,7 @@
 <?php
-
+    
     function mostrarComentarios($servicio, $filtro){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
         if($filtro === "Todos"){
             if($servicio === "5"){
@@ -33,6 +34,7 @@
     }
 
     function contarComentariosPositivos($servicio){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
         if($servicio === "5"){
@@ -50,6 +52,7 @@
     }
 
     function contarComentariosNegativos($servicio){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
         if($servicio === "5"){
@@ -68,6 +71,7 @@
 
 
     function mostrarMantenimientos($fechaInicio, $fechaTermino){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
         
 
@@ -82,6 +86,7 @@
     }
 
     function contarTareas($estado, $fechaInicio, $fechaTermino){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
      
@@ -98,6 +103,7 @@
     }
 
     function mejorEmpleado($fechaInicio, $fechaTermino){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
      
@@ -113,6 +119,7 @@
     }
     
     function mostrarVisitas($idGuia, $fechaInicio, $fechaTermino){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
         
         $sql = "SELECT fechVisi, estadoVisi, nombVisit, apellPatVisit, apellMatVisit, correoVisit from Visitaguiada inner join Visitante on Visitaguiada.idVisitante = Visitante.idVisitante where estadoVisi = 'Finalizada' and idTrabajador = $idGuia and fechVisi BETWEEN '".$fechaInicio."' AND '".$fechaTermino."' order by fechVisi";
@@ -126,6 +133,7 @@
     }
 
     function contarVisitas($estado, $fechaInicio, $fechaTermino, $idGuia){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
      
@@ -141,6 +149,7 @@
         mysqli_close($conn);//Se cierra la conexión
     }
     function contarTodasVisitas($fechaInicio, $fechaTermino, $idGuia){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
      

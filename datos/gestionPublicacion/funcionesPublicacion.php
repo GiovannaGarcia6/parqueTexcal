@@ -72,16 +72,15 @@
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
         //Query para recuperar datos de los servicios almacenados en la base de datos
-        $query="SELECT * FROM Servicio";
+        $query = "SELECT * FROM Servicio";
 
         //Se ejecuta la sentencia sql
-        $resultado=mysqli_query($conn,$query);
+        $resultado = mysqli_query($conn,$query);
 
         return $resultado; //Se retornan los datos de los servicios obtenidos
 
         mysqli_close($conn); //Se cierra la conexión con la bd.
     }
-
 
     /*  
         Nombre de la función: agregarPublicacion

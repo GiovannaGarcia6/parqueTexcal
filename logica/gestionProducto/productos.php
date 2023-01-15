@@ -1,4 +1,7 @@
 <?php
+
+    /*
+    */
     function mostrarProductos($buscador,$idVendedor, $idTienda){
         //Se utiliza require en caso de error para detener el script.
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionProducto/funcionesProducto.php';

@@ -1,24 +1,21 @@
 
-            $(document).ready(function() {
-                // Set trigger and container variables
-                var trigger = $('.container .display-chat '),
-                    container = $('#content');
+$(document).ready(function() {
+    // Establecer variables
+    var trigger = $('.container .display-chat '),
+        container = $('#content');
 
-                // Fire on click
-                trigger.on('click', function() {
-                    // Set $this for re-use. Set target from data attribute
-                    var $this = $(this),
-                        target = $this.data('target');
+    // Se activa cuando hace clic
+    trigger.on('click', function() {
+        
+        // $this es para reutilizarlo y $target se usa para obtener los datos
+        var $this = $(this),
+            target = $this.data('target');
 
-                    // Load target page into container
-                    container.load(target + '.php');
+        //Carga lo que contiene la página
+        container.load(target + '.php');
 
-                    // Stop normal link behavior
-                    return false;
-                });
-
-                //Bajar el scroll
-                $('.display-chat').scrollTop( $('.display-chat').prop('scrollHeight') );   
-
-
-            });
+        return false;
+    });
+    //Bajar el scroll
+    $('.display-chat').scrollTop( $('.display-chat').prop('scrollHeight') );   
+});
