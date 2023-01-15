@@ -2,11 +2,10 @@
     session_start();//Se inicia la sesión.
     //Se verifica que exista la variable de sesión para que el usuario pueda acceder al menú.
     if(isset($_SESSION['usuario'])){
-        //Se obtiene el id del usuario
+        //Se obtiene el id del vendedor y de la tienda
         $id = htmlentities($_GET['id']);
         $idTienda = htmlentities($_GET['idTienda']);
     }else{
-        
         //En caso de que no se encuentre la variable de sesión se redirige al inicio de sesión.
         header("Location: ../login.php");
     }      
@@ -36,6 +35,7 @@
         </div>
         <div class="row">
             <section id="section"  class="col-xs-12 col-sm-12 col-md-12">
+                <!--Buscador de productos, el formulario esta conformado por un input y un botón-->
                 <div class="card col-10 offset-1 buscador">
                     <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-2 col-2">
@@ -57,8 +57,6 @@
                         </form>
                     </div>
                 </div>
-
-                
                 <br>
                 <br>
                 <?php 
@@ -87,7 +85,7 @@
                             </div>
                             <br>     
                 <?php   } 
-                        //Se refresca la página 2 segundos después para eliminar el mensaje. 
+                        //Se refresca la página 1 segundo después para eliminar el mensaje. 
                         header("refresh:1; url = productos.php?id=".$id."&idTienda=".$idTienda);
                         //Se elimina la variable de sesión
                         unset($_SESSION['status']); 
@@ -103,19 +101,23 @@
 
                 <div class="col-10 offset-1">
                     <?php 
+                        //Archivo que contiene la lógica de los productos
                         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/logica/gestionProducto/Productos.php';
                         //Se verifica que exista la variable buscador enviada por el método POST
                         if(isset($_POST['buscador'])){
+                            //Se almacena lo que contiene el input
                             $buscador = htmlentities($_POST['buscador']);
+                            //Se envian los datos a la función para que muestre los registros correspondientes a la búsqueda
                             mostrarProductos($buscador,$id,$idTienda);
                         }else{
+                            //Se envian los datos a la función para que muestre todos los registros
                             mostrarProductos("",$id,$idTienda);
                         }
                     ?>
                 </div>
             </section>  
         </div>
-        <!-- Modal -->
+        <!-- Modal de confirmación para realizar la eliminación de un producto-->
         <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -163,8 +165,9 @@
             </footer>
         </div>
         
+        <!--Script para eliminar un producto-->
         <script src="../../../logica/js/eliminarProducto.js"></script>
-
+        <!--Script de Bootstrap-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 
     </body>

@@ -4,6 +4,7 @@
     if(isset($_SESSION['usuario'])){
         //Se obtiene el id del usuario
         $id = htmlentities($_GET['id']);
+        //Se obtiene el id de la tienda
         $idTienda = htmlentities($_GET['idTienda']);
     }else{
         //En caso de que no se encuentre la variable de sesión se redirige al inicio de sesión.
@@ -21,19 +22,22 @@
         <link rel="stylesheet" href="../../css/estilos_AgregarCarpeta.css">
     </head>
     <body class="grid-container">
+        <!--Navbar de la pagina, la cual contiene el logo y nombre del parque-->
         <div class="row">
             <nav class="col-xs-12 col-sm-12 col-md-12">
                 <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a> 
             </nav>
         </div>
+        <!--Aside de la página en la que se encuentra el enlace de volver, esté redirige al menú del Vendedor-->
         <div class="row">
-            <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
+            <aside id="aside" class="col-12 col-sm-12 col-md-12">
                 <a href="./productos.php?id=<?php echo $id;?>&idTienda=<?php echo $idTienda;?>">Volver</a>
             </aside>
         </div>
         <div class="row">
             <section id="section"  class="col-xs-12 col-sm-12 col-md-12">
-                <div class="col-xs-12 col-sm-8 col-md-4 formulario">
+                <div class="col-11 col-sm-8 col-md-4 formulario">
+                    <!--Formulario para agregar un boleto-->
                     <form action="../../../logica/gestionProducto/agregarProducto.php" method="post" enctype="multipart/form-data"> 
                         <h2  style="text-align: center">AGREGAR PRODUCTO</h2>
                         <br>
@@ -47,29 +51,35 @@
                         <?php   }else{?> 
                                     <div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert">
                                     <?php echo $_SESSION['status']; ?>
-                                    </div> <br>     
+                                    </div> <br>  
+                        <!--Se refresca un segundo después de mostrar el mensaje-->   
                         <?php   } header("refresh:1; url = ./agregarProducto.php?id=$id&idTienda=$idTienda");unset($_SESSION['status']); } ?><!--Se elimina la variable de sesión-->
                         
+                        <!--Id del vendedor-->  
                         <input type="hidden" name="id" value="<?php echo $id;?>">
+                        <!--Id de la tienda-->  
                         <input type="hidden" name="idTienda" value="<?php echo $idTienda;?>">
-                        <!--Nombre del negocio-->
+                        <!--Nombre del producto-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-store icono"></i></span>
                             <input type="text" autocomplete="off" class="form-control" name="nombreProducto" placeholder="Nombre del producto" aria-label="Username" aria-describedby="addon-wrapping" required>
                         </div>
+                        <!--Precio del producto-->  
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-money-bill icono"></i></span>
                             <input type="number" autocomplete="off" class="form-control" name="precioProducto" placeholder="Precio del producto" aria-label="Username" aria-describedby="addon-wrapping" required>
                         </div>
+                        <!--Decripción del producto-->  
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-align-left icono"></i></span>
                             <textarea class="form-control" placeholder="Descripción del producto" name="descProducto" style="height: 100px"></textarea>
                         </div>
+                        <!--Imagen del producto-->  
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text span" id=""> <i class="fa-solid fa-image icono"></i></span>
                             <input type="file"  class="form-control" name="archivo"  aria-label="Username" aria-describedby="addon-wrapping" required>
                         </div>
-
+                        <!--Botón para agregar el producto-->  
                         <button class="btnRegistrar btn-lg" type="submit">Agregar</button>
                     </form>         
                 </div>
@@ -100,6 +110,7 @@
                 </div>   
             </footer>
         </div>
+        <!--Script js de Bootstrap-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>

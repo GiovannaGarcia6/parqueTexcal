@@ -35,6 +35,7 @@
         </div>
         <div class="row">
             <section id="section"  class="col-xs-12 col-sm-12 col-md-12">
+                <!--Buscador de tiendas, el formulario esta conformado por un input y un botón-->
                 <div class="card col-10 offset-1 buscador">
                     <div class="row">
                         <div class="col-lg-1 col-md-1 col-sm-2 col-2">
@@ -55,13 +56,7 @@
                             </div>    
                         </form>
                     </div>
-
-                    
                 </div>
-
-                
-
-                
                 <br>
                 <br>
                 <?php 
@@ -96,32 +91,28 @@
                         unset($_SESSION['status']); 
                     } 
                 ?>
-                
                 <br>
-
                 <div class="col-10 offset-1">
-                
                     <label class="col-form-label">Seleccione un negocio para visualizar los productos.</label>
                     <?php 
                         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/logica/gestionLocal/locales.php';
                         //Se verifica que exista la variable buscador enviada por el método POST
                         if(isset($_POST['buscador'])){
+                            //Se almacena lo que contiene el input
                             $buscador = htmlentities($_POST['buscador']);
+                            //Se envian los datos a la función para que muestre los registros correspondientes a la búsqueda
                             mostrarLocalesProductos($buscador,$id);
                         }else{
+                            //Se envian los datos a la función para que muestre todos los registros
                             mostrarLocalesProductos("",$id);
                         }
                     ?>
-                    
-               
                 </div>
                 <br>
-
             </section>  
         </div>
-
-         <!-- Footer de la página en la que contiene el logo y los datos de la empresa-->
-         <div class="row">
+        <!-- Footer de la página en la que contiene el logo y los datos de la empresa-->
+        <div class="row">
             <footer>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 footer1"> </div>
@@ -144,7 +135,7 @@
                 </div>   
             </footer>
         </div>
-        
+        <!--Script de Bootstrap-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>

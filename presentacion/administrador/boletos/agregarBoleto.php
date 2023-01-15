@@ -20,11 +20,13 @@
         <link rel="stylesheet" href="../../css/estilos_AgregarBoleto.css">
     </head>
     <body class="grid-container">
+        <!--Navbar de la pagina, la cual contiene el logo y nombre del parque-->
         <div class="row">
             <nav class="col-xs-12 col-sm-12 col-md-12">
                 <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a> 
             </nav>
         </div>
+        <!--Aside de la página en la que se encuentra el enlace de volver, esté redirige al menú del Administrador-->
         <div class="row">
             <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
                 <a href="./boletos.php?id=<?php echo $id;?>">Volver</a>
@@ -33,6 +35,7 @@
         <div class="row">
             <section id="section"  class="col-12 col-sm-12 col-md-12">
                 <div class="col-11 col-sm-8 col-md-4 formulario">
+                    <!--Formulario para agregar un boleto-->
                     <form action="../../../logica/gestionBoleto/agregarBoleto.php" method="post"> 
                         <h2 class="mb-5" style="text-align: center"></i>NUEVA TARIFA</h2>
                         <!--Se muestra el mensaje de éxito o de error-->
@@ -50,6 +53,7 @@
                         </div>  
                         <?php } header("refresh:1; url = ./agregarBoleto.php?id=$id");unset($_SESSION['status']); } ?><!--Se elimina la variable de sesión-->
                         
+                        <!--Id del administrador-->
                         <input type="hidden" name="id" value="<?php echo $id;?>">
 
                         <!--Nombre del boleto-->
@@ -62,6 +66,7 @@
                             </span>
                             <input type="text" autocomplete="off" class="form-control" name="nombre" placeholder="Nombre del boleto" aria-label="Username" aria-describedby="addon-wrapping" required>
                         </div>
+
                         <!--Precio del boleto-->
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id=""><i class="fa-solid fa-dollar-sign"></i></span>
@@ -80,6 +85,7 @@
                             </select>
                           
                         </div>
+                        <!--Botón para agregar el boleto-->
                         <button class="btnAceptar btn-lg" type="submit">Agregar</button>
                     </form>       
                 </div>
@@ -87,6 +93,7 @@
             </section>  
         </div>
         <div class="row">
+            <!-- Footer de la página en la que contiene el logo y los datos de la empresa-->
             <footer>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 footer1"> </div>
@@ -111,6 +118,7 @@
                 </div>
             </footer>
         </div>
+        <!--Script de Bootstrap-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
 </html>

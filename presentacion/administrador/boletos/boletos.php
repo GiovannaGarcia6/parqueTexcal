@@ -44,7 +44,7 @@
                         <div class="col-4 col-sm-3">
                             <label class="col-form-label">Boletos</label>
                         </div>
-                        
+                         <!--Formulario que funciona como buscador de boletos-->
                         <form class="col-12 col-sm-6" method="post">
                             <div class="row">   
                                 <div class="col-9 col-sm-10">
@@ -141,7 +141,7 @@
         </div>
         
         
-        <!-- Modal -->
+        <!-- Modal de confirmación de eliminació para un boleto -->
         <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -165,8 +165,9 @@
             </div>
         </div>
 
+        <!--Script para eliminar un boleto-->
         <script src="../../../logica/js/eliminarBoleto.js"></script>
-
+        <!--Script de Bootstrap-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
        
     </body>
