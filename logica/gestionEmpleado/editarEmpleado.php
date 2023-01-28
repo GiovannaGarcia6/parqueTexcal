@@ -1,5 +1,5 @@
 <?php 
-    //Insertamos código de otro archivo.
+    //Archivo que contiene las funciones de los empleados
     require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionEmpleado/funcionesEmpleado.php';
 
     session_start();//Se inicia la sesión.

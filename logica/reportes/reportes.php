@@ -455,7 +455,4 @@
             echo "<span>El total de visitas guiadas son <b>".$resVisitas. "</b> en un periodo de <b>".$fechaInicio. "</b> a <b>".$fechaTermino."</b>.</span>";
         }
     }
-
-
-
 ?>

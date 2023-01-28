@@ -7,7 +7,7 @@
         realizar la llamada a la función correspondiente para generar mostrar los datos.
     */
     function mostrarCarpetas($buscador,$id){
-         //Se utiliza require en caso de error para detener el script. El archivo contiene las funciones
+        //Se utiliza require en caso de error para detener el script. El archivo contiene las funciones
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionArchivero/funcionesArchivero.php';
 
         //Se realiza la consulta y se almacena lo que retorna la función
@@ -40,7 +40,8 @@
     
     /*
         Nombre de la función: generarCarpetas
-        Entrada: Resultado de la consulta y id del administrador
+        Entrada: Resultado de la consulta y id del administrador.
+        Salida: Generación de los contenedores con la información de cada carpeta.
 
         Descripción: La función permite mostrar los datos de las carpetas.
     */
@@ -108,7 +109,8 @@
     /*
         Nombre de la función: generarArchivos
         Entrada: Resultado de la consulta y id del administrador
-
+        Salida: Información de los archivos.
+        
         Descripción: La función permite mostrar los datos correspondientes a cada archivo que exista en la carpeta.
     */
     function generarArchivos($resultado,$idAdmin){

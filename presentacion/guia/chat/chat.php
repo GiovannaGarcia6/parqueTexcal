@@ -1,106 +1,123 @@
 <?php
 
-    session_start();//Se inicia la sesión.
-    //Se verifica que exista la variable de sesión para que el usuario pueda acceder al menú.
-    if(isset($_SESSION['usuario'])){ 
-        //Si existe se obtiene el id del boleto.
-        $id = htmlentities($_GET['id']); 
-        $idVisita = htmlentities($_GET['idVisita']);
-        //Requerimos del archivo para realizar la conexión.
-    }else{
-        
-        //En caso de que no se encuentre la variable de sesión se redirige al inicio de sesión.
-        header("Location: ../../login/login.php");
-    }    
-   
+session_start(); //Se inicia la sesión.
+//Se verifica que exista la variable de sesión para que el usuario pueda acceder al menú.
+if (isset($_SESSION['usuario'])) {
+    //Se obtiene el id del usuario.
+    $id = htmlentities($_GET['id']);
+    //Se obtiene el id de la visita la que pertenece el chat.
+    $idVisita = htmlentities($_GET['idVisita']);
+    //Requerimos del archivo para realizar la conexión.
+} else {
+
+    //En caso de que no se encuentre la variable de sesión se redirige al inicio de sesión.
+    header("Location: ../../login/login.php");
+}
+
 ?>
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="refresh" content="18"> <!-- para refrescar la pagina-->
 
-        <title>Chat</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-        <link rel="stylesheet" href="../../css/estilos_Chat.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<head>
+    <!-- Codificación de caracteres utilizada en el documento -->
+    <meta charset="utf-8">
+    <!-- viewport para el diseño responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Refrescar la pagina cada 18 segundos para actualizar constantemente el chat-->
+    <meta http-equiv="refresh" content="18">
+    <!-- Título de la página que se visualiza en la pestaña desde el navegador -->
+    <title>Chat</title>
+    <!-- links de estilos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../../css/estilos_Chat.css">
+    <!-- Scripts para el chat de Js -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="../../../logica/js/chat.js"></script>
 
-        <script src="../../../logica/js/chat.js"></script>
+</head>
+<!-- Body con la clase grid-container que alinea el contenido -->
 
-    </head>
-    <body class="grid-container">
+<body class="grid-container">
+    <!-- Div que contiene el renglón con el logo y nombre del sistema -->
+    <div class="row">
+        <nav class="col-xs-12 col-sm-12 col-md-12">
+            <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a>
+        </nav>
+    </div>
+    <!-- Div que contiene la opción de regresar a la sección anterior enviando las variables
+            Necesarias para que se muestren los datos correspondientes -->
+    <div class="row">
+        <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
+            <a href="../visitaGuiada/visitasPendientes.php?id=<?php echo $id; ?>">Volver</a>
+        </aside>
+    </div>
+    <!-- Div que contiene la sección del chat -->
+    <div class="row">
+        <section id="section" class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-11 col-sm-11 col-md-6 ">
+                <div class="row">
+                    <!-- Div donde se muestra los datos del usuario que se está contactando -->
+                    <div class="col-12 col-sm-12 col-md-12 datosChat">
 
-        <div class="row">
-            <nav class="col-xs-12 col-sm-12 col-md-12">
-                <a href="#" class="enlace"><img src="../../media/imagenes/logo.png" alt="" class="logo"><span> Parque Estatal "El Texcal"</span></a> 
-            </nav>
-        </div>
-        <div class="row">
-            <aside id="aside" class="col-xs-12 col-sm-12 col-md-12">
-                <a href="../visitaGuiada/visitasPendientes.php?id=<?php echo $id;?>">Volver</a>
-            </aside>
-        </div>
-        <div class="row">
+                        <i class="fa-solid fa-circle-user" style="font-size: 45px; color: white;"></i>
 
-            <section id="section" class="col-xs-12 col-sm-12 col-md-12">
-                <div class="col-11 col-sm-11 col-md-6 ">
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 datosChat">
+                        <?php
+                        require $_SERVER['DOCUMENT_ROOT'] . '/sistema web/logica/chat/chat.php';
 
-                            <i class="fa-solid fa-circle-user" style="font-size: 45px; color: white;"></i>
-                        
-                            <?php 
-                                require $_SERVER['DOCUMENT_ROOT'].'/sistema web/logica/chat/chat.php';
+                        mostrarDatosVisitante($idVisita, "Visitante");
+                        ?>
 
-                                mostrarDatosVisitante($idVisita,"Visitante"); 
-                            ?>
-                        
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 display-chat" id="display-chat">
-                            <?php 
-                               
-                               mostrarMensajes($idVisita, "Guia");
-                            ?>
-                        </div>
-                    </div>  
-                    
-                    <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 formulario-mensaje">
-                            <form method="post" action="../../../logica/chat/enviarMensaje.php?id=<?php echo $id;?>&idVisita=<?php echo $idVisita;?>&tipo=1">
+                </div>
+                <!-- Div donde se muestra la lista de mensajes registrados en el chat -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 display-chat" id="display-chat">
+                        <?php
+
+                        mostrarMensajes($idVisita, "Guia");
+                        ?>
+                    </div>
+                </div>
+                <!-- Div que contiene formulario que funciona como cuadro de texto para redactar y enviar un mensaje -->
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 formulario-mensaje">
+                        <form method="post" action="../../../logica/chat/enviarMensaje.php?id=<?php echo $id; ?>&idVisita=<?php echo $idVisita; ?>&tipo=1">
                             <div class="row divcol">
-                                    <div class="col-10 divcol">
-                                        <textarea name="msg" class="form-control" style="color: #000;" placeholder="Escribir aquí tu mensaje..."></textarea>
-                                    </div>
-                                    <div class="col-2 divcol">
-                                        <button type="submit" class="btn" style="font-size: 20px; margin:15%;"><i class="fa-solid fa-paper-plane"></i></button>
-                                    </div>
-                                    </div>
-                            </form>
-                        </div>
+                                <!-- Input para redactar mensaje -->
+                                <div class="col-10 divcol">
+                                    <textarea name="msg" class="form-control" style="color: #000;" placeholder="Escribir aquí tu mensaje..."></textarea>
+                                </div>
+                                <!-- Botón para enviar mensaje -->
+                                <div class="col-2 divcol">
+                                    <button type="submit" class="btn" style="font-size: 20px; margin:15%;"><i class="fa-solid fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </section>
-           
-        </div>
-        <div class="row">
-            <footer>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 footer1"> </div>
-                </div>
-                <div class="row">
+            </div>
+        </section>
+
+    </div>
+    <!-- Footer de la página en la que contiene el logo y los datos de la empresa-->
+    <div class="row">
+        <footer>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 footer1"> </div>
+            </div>
+            <div class="row">
+                <!--Logo-->
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-3 opc">
                         <div class="logo">
                             <div class="card-body">
                                 <img src="../../media/imagenes/logo.png" alt="" class="logoFooter">
-                                
+
                             </div>
                         </div>
                     </div>
+                    <!--Información de la ubicación del parque-->
                     <div class="col-xs-12 col-sm-12 col-md-9 opc">
                         <div class="datosFooter">
                             <div class="card-body ">
@@ -111,8 +128,10 @@
                         </div>
                     </div>
                 </div>
-            </footer>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    </body>
+        </footer>
+    </div>
+    <!-- Script de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
 </html>

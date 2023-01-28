@@ -34,9 +34,4 @@
             header("Location: ../../presentacion/visitante/chat/chat.php?id=".$id."&idVisita=".$idVisita); //se redirige al chat
         }
     }
-   
-
-       
-  
-
 ?>

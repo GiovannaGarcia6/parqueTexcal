@@ -1,4 +1,17 @@
 <?php
+
+    /*
+        Nombre de la función:mostrarBoletos
+        Entrada: Frase o palabra a buscar, id del administrador
+
+        Descripción: La función permite realizar la búsqueda de boletos que coincidan con
+        lo que se envío del buscador para posteriormente, realizar una verificación de los resultados
+        retornados. Si el resultado tiene errores se debe mandar un mensaje al usuario, sino contiene
+        ningún error se verifica si existen filas, los cuales son los registros. Si el número de
+        filas es igual a 0 indica que no hay registros y que se debe mostrar un mensaje al usuario, 
+        en caso de que si existan resultados se realiza la llamada a la función correspondiente para
+        generar mostrar los datos.
+    */
     function mostrarBoletos($buscador,$id){
         //Se utiliza require en caso de error para detener el script.
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionBoleto/funcionesBoleto.php';
@@ -29,6 +42,14 @@
         
     }
 
+    /*
+        Nombre de la función: generarTablaBoletos
+        Entrada: Resultado de la consulta y id del administrador
+        Salida: Tabla de boletos
+
+        Descripción: La función permite mostrar una tabla con los registros que se obtuvieron de
+        la consulta.
+    */
     function generarTablaBoletos($resultado,$id){
 
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
@@ -62,18 +83,28 @@
     }
 
     
+    /* 
+        Nombre de lla función: mostrarServicio
+        Entrada: Nombre del servicio
+        Salida: Elementos option de un selector
 
+        Descripción: Está función permite obtener los servicios existentes 
+        y así crear un option por cada servicio.
+    */
     function mostrarServicio($nombreServicio){
 
+        //Archivos para obtener las funciones y la conexión a la base de datos
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionPublicacion/funcionesPublicacion.php';
 
-        $resultado=servicios();
+        //Se obtienen los servicios
+        $resultado = servicios();
                  
+        //Se realiza un ciclo para crear los option de cada servicio
         while ($servicio = mysqli_fetch_assoc($resultado)) {
             if($servicio['nombServ'] != 'Parque'){
                 echo "<option value='".$servicio['idServicio']."'";
-                //Si es el mismo id que se obtuvo al inicio se muestra como seleccionada.
+                //Si es el mismo nombre del servicio que se obtuvo al inicio se muestra como seleccionada.
                 if($nombreServicio === $servicio['nombServ']){
                     echo ' selected="selected"';
                 }
@@ -85,14 +116,26 @@
     }
 
 
+    /*
+        Nombre de la función: mostrarBoletosServicio
+        Entrada: id del servicio
+
+        Descripción: La función permite realizar la búsqueda de boletos que coincidan con
+        el id del servicio para posteriormente realizar una verificación de los resultados
+        retornados. Si el resultado tiene errores se debe mandar un mensaje al usuario, sino contiene
+        ningún error se verifica si existen filas, los cuales son los registros. Si el número de
+        filas es igual a 0 indica que no hay registros y que se debe mostrar un mensaje al usuario, 
+        en caso de que si existan resultados se realiza la llamada a la función correspondiente para
+        generar mostrar los datos.
+    */
     function mostrarBoletosServicio($idServicio){
         //Se utiliza require en caso de error para detener el script.
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionBoleto/funcionesBoleto.php';
 
+        //Se realiza la obtención de los boletos de un servicio
+        $resultado = boletosServicios($idServicio);   
 
-        $resultado = boletosServicios($idServicio);             
         //Se verifica que no existan errores en la consulta
-        
         if (!$resultado){
             //Si existen se manda un mensaje con el error que ocurrió en la consulta.
             echo "<br>";
@@ -114,7 +157,13 @@
         }
     }
 
+    /*
+        Nombre de la función: generarBoletosServicios
+        Entrada: Resultado de la consulta 
+        Salida: Boletos de un servicio
 
+        Descripción: La función permite mostrar una contenedor con los boletos que se obtuvieron del servicio.
+    */
     function generarBoletosServicios($resultado){
 
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
@@ -133,3 +182,4 @@
     }
 
 ?>
+

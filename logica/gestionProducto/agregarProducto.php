@@ -50,5 +50,4 @@
             }
         }
     }
-    mysqli_close($conn);//Se cierra la conexión
 ?>

@@ -1,6 +1,15 @@
 <?php
-
     /*
+        Nombre de la función: mostrarProductos
+        Entrada: Frase o palabra a buscar, id del vendedor y id de la tienda
+
+        Descripción: La función permite realizar la búsqueda de productos que coincidan con
+        lo que se envío del buscador para posteriormente, realizar una verificación de los resultados
+        retornados. Si el resultado tiene errores se debe mandar un mensaje al usuario, sino contiene
+        ningún error se verifica si existen filas, los cuales son los registros. Si el número de
+        filas es igual a 0 indica que no hay registros y que se debe mostrar un mensaje al usuario, 
+        en caso de que si existan resultados se realiza la llamada a la función correspondiente para
+        generar mostrar los datos.
     */
     function mostrarProductos($buscador,$idVendedor, $idTienda){
         //Se utiliza require en caso de error para detener el script.
@@ -31,7 +40,18 @@
         
     }
 
+    /*
+        Nombre de la función: mostrarProductosHome
+        Entrada: Id de la tienda
 
+        Descripción: La función permite realizar la búsqueda de productos que coincidan con
+        el id de la tienda para posteriormente realizar una verificación de los resultados
+        retornados. Si el resultado tiene errores se debe mandar un mensaje al usuario, sino contiene
+        ningún error se verifica si existen filas, los cuales son los registros. Si el número de
+        filas es igual a 0 indica que no hay registros y que se debe mostrar un mensaje al usuario, 
+        en caso de que si existan resultados se realiza la llamada a la función correspondiente para
+        generar mostrar los datos.
+    */
     function mostrarProductosHome($idTienda){
         //Se utiliza require en caso de error para detener el script.
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/gestionProducto/funcionesProducto.php';
@@ -61,10 +81,13 @@
         
     }
 
+    /*
+        Nombre de la función: generarTablaProductos
+        Entrada: Resultado de la consulta y id del vendedor
 
-
-
-
+        Descripción: La función permite mostrar una tabla con los registros que se obtuvieron de
+        la consulta.
+    */
     function generarTablaProductos($resultado,$idVendedor){
 
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
@@ -102,43 +125,20 @@
         mysqli_close($conn);//Se cierra la conexión con la bd.     
     }
 
+    /*
+        Nombre de la función: generarProductosHome
+        Entrada: Resultado de la consulta y id del vendedor
 
-
-    function generarTablaProductosHome($resultado){
-
-        require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
-        
-        echo '<div class="table-responsive">';
-        echo "<table class='table table-striped table-hover'>";
-        //Se muestra los nombres de cada columna de la tabla
-        echo "<thead>";
-        echo "<th>Nombre del Producto </th>";
-        echo "<th>Precio</th>";
-        echo "<th>Descripción</th>";
-        echo "<th>Imagen</th>";
-        echo "<th></th>";
-        echo "</thead>"; 
-        //Se muestran los datos encontrados de la busqueda
-        while ($row = mysqli_fetch_row($resultado)){
-            echo "<tr>";
-            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del producto
-            echo "<td>"; echo $row[2]; echo "</td>"; //precio del producto
-            echo "<td>"; echo $row[3]; echo "</td>"; //descripción del producto
-            echo "<td>"; echo '<img  style="width:128px;height:128px" src="data:image/jpeg;base64,'.base64_encode( $row[4] ).'"/>';  echo "<td>"; //imagen del producto
-        }
-        echo "</table>";    
-        echo '</div>';              
-        
-        mysqli_close($conn);//Se cierra la conexión con la bd.     
-    }
-
+        Descripción: La función permite mostrar un contenedor con los datos de los productos que se obtuvieron de
+        la consulta.
+    */
 
     function generarProductosHome($resultado){
 
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
         echo "<div class='row'>";
-        //Se muestran los datos encontrados de la busqueda
+        //Se muestran los datos encontrados de la búsqueda
         while ($row = mysqli_fetch_row($resultado)){
 ?>
             <div class="col-12 col-md-4 card cardProducto text-center">
