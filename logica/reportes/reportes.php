@@ -1,5 +1,4 @@
 <?php
-
     /* 
         Nombre de la función: mostrarResultados
         Entrada: id del administrador, la sección a la que se le aplican los filtros, y los parametros para aplicarlos
@@ -14,6 +13,7 @@
     function mostrarResultados($idAdmin, $seccion, $parametro1, $parametro2){
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/reportes/funcionesReportes.php';
       
+
         if($seccion === "Comentarios"){ 
             $resultadoComentarios = mostrarComentarios($parametro1, $parametro2);
             if (!$resultadoComentarios){
@@ -61,7 +61,498 @@
                     }
                 }
             }
-        }   
+        }
+    }
+
+    /*
+        Nombre de la función: mejorServicio
+        Entrada: Sin parámetros
+        Salida: Registros comentarios positivos del mejor servicio
+
+        Descripción: Esta función realiza un promedio de la calificación de cada servicio
+        para verificar cuál es el mejor servicio.
+    */
+    function mejorServicio(){
+      
+        //Se realiza el promedio de la calificación de cada uno de los servicios
+        $promedioBalneario = number_format(promedioXServicio(1), 1);
+        $promedioCaminatas = number_format(promedioXServicio(2), 1);
+        $promedioVisitas   = number_format(promedioXServicio(3), 1);
+        $promedioCiclismo  = number_format(promedioXServicio(4), 1);
+
+
+        //Se verifica que el resultado retornado no tenga errores de consulta
+        if (!$promedioBalneario && !$promedioCaminatas && !$promedioCiclismo && !$promedioVisitas){
+            //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+            echo "<br>";
+            echo "La consulta SQL contiene errores.";
+            exit();
+        }else{
+            echo '<h3>Calificación de los servicios</h3>';
+
+            echo "<span><b>Balneario:</b> ".$promedioBalneario."</span>";
+            echo "<span><b>Caminatas:</b> ".$promedioCaminatas."</span>";
+            echo "<span><b>Visitas guiadas:</b> ".$promedioVisitas."</span>";
+            echo "<span><b>Ciclismo:</b> ".$promedioCiclismo."</span>";
+            echo "<br>";           
+            
+            
+            //Con la función de php llamada max se obtiene la calificación mayor de los servicios
+            $mejorPuntuacion = max($promedioBalneario, $promedioCaminatas, $promedioCiclismo, $promedioVisitas); 
+
+            //De acuerdo a la puntuación mas baja, verificamos cuál de los servicios es el mejor
+            if($mejorPuntuacion === $promedioBalneario){
+                echo "<br>";
+                echo "<span>El mejor servicio es el <b>balnario</b> con una calificación de <b>$promedioBalneario</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(1, "Positivos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios positivos del balneario</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+            if($mejorPuntuacion === $promedioCaminatas){
+                echo "<br>";
+                echo "<span>El mejor servicio es el de las <b>caminatas</b> con una calificación de <b>$promedioCaminatas</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(2, "Positivos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios positivos de caminatas</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+
+            if($mejorPuntuacion === $promedioVisitas){
+                echo "<br>";
+                echo "<span>El mejor servicio es el de las <b>visitas guiadas</b> con una calificación de <b>$promedioVisitas</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(3, "Positivos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios positivos de las visitas guiadas</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+
+            if($mejorPuntuacion === $promedioCiclismo){
+                echo "<br>";
+                echo "<span>El mejor servicio es el de <b>ciclismo</b> con una calificación de <b>$promedioCiclismo</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(4, "Positivos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios positivos de Ciclismo</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+        }
+    }
+    /*
+        Nombre de la función: peorServicio
+        Entrada: Sin parámetros
+        Salida: Registros comentarios negativos del mejor servicio
+
+        Descripción: Esta función realiza un promedio de la calificación de cada servicio
+        para verificar cuál es el peor servicio.
+    */
+    function peorServicio(){
+      
+        //Se realiza el promedio de la calificación de cada uno de los servicios
+        $promedioBalneario = number_format(promedioXServicio(1), 1);
+        $promedioCaminatas = number_format(promedioXServicio(2), 1);
+        $promedioVisitas   = number_format(promedioXServicio(3), 1);
+        $promedioCiclismo  = number_format(promedioXServicio(4), 1);
+
+
+        //Se verifica que el resultado retornado no tenga errores de consulta
+        if (!$promedioBalneario && !$promedioCaminatas && !$promedioCiclismo && !$promedioVisitas){
+            //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+            echo "<br>";
+            echo "La consulta SQL contiene errores.";
+            exit();
+        }else{
+            echo '<h3>Calificación de los servicios</h3>';
+
+            echo "<span><b>Balneario:</b> ".$promedioBalneario."</span>";
+            echo "<span><b>Caminatas:</b> ".$promedioCaminatas."</span>";
+            echo "<span><b>Visitas guiadas:</b> ".$promedioVisitas."</span>";
+            echo "<span><b>Ciclismo:</b> ".$promedioCiclismo."</span>";
+            echo "<br>";           
+            
+            
+            //Con la función de php llamada max se obtiene la calificación mayor de los servicios
+            $peorPuntuacion = min($promedioBalneario, $promedioCaminatas, $promedioCiclismo, $promedioVisitas); 
+
+            //De acuerdo a la puntuación mas baja, verificamos cuál de los servicios es el mejor
+            if($peorPuntuacion === $promedioBalneario){
+                echo "<br>";
+                echo "<span>El peor servicio es el <b>balnario</b> con una calificación de <b>$promedioBalneario</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(1, "Negativos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios negativos del balneario</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+            if($peorPuntuacion === $promedioCaminatas){
+                echo "<br>";
+                echo "<span>El peor servicio es el de las <b>caminatas</b> con una calificación de <b>$promedioCaminatas</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(2, "Negativos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios negativos de caminatas</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+
+            if($peorPuntuacion === $promedioVisitas){
+                echo "<br>";
+                echo "<span>El peor servicio es el de las <b>visitas guiadas</b> con una calificación de <b>$promedioVisitas</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(3, "Negativos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios negativos de las visitas guiadas</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+
+            if($peorPuntuacion === $promedioCiclismo){
+                echo "<br>";
+                echo "<span>El peor servicio es el de <b>ciclismo</b> con una calificación de <b>$promedioCiclismo</b></span>";
+                echo "<br>";
+                $resultadoComentarios = mostrarComentarios(4, "Negativos");
+                if (!$resultadoComentarios){
+                    //Si existen se manda un mensaje con el error que ocurrió en la consulta.
+                    echo "<br>";
+                    echo "La consulta SQL contiene errores.";
+                    exit();
+                }else{
+                    //Se obtiene el numero de filas que tuvo el resultado del query.
+                    $numfilas = $resultadoComentarios->num_rows;
+        
+                    //Si es igual a 0 indica que no existe un registro que contenga lo que el 
+                    //usuario ingreso en el buscador
+                
+                    if($numfilas===0){
+                        //Alerta para cuando no se encuentran registros
+                        echo '<div id="alerta" class="alert alert-danger d-flex align-items-center" role="alert"  style="margin-top:10px;">No hay resultados.</div><br>';  
+                    }else{
+                        echo '<h3>Comentarios negativos de Ciclismo</h3>';
+    
+                        echo '<div class="table-responsive">';
+                        echo "<table class='table table-striped table-hover'>";
+                        //Se muestra los nombres de cada columna de la tabla
+                        echo "<thead>";
+                        echo "<th>Servicio</th>";
+                        echo "<th>Calificacion</th>";
+                        echo "<th>Comentario</th>";
+                        echo "</thead>"; 
+                        //Se muestran los datos encontrados de la busqueda
+                        while ($row = mysqli_fetch_row($resultadoComentarios)){
+                            echo "<tr>";
+                            echo "<td>"; echo $row[0]; echo "</td>"; //nombre del negocio
+                           
+                            echo "<td> <span>"; 
+                
+                            for($estrellas=0; $estrellas<$row[2];$estrellas++){
+                                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                            }
+                            
+                            echo $row[2]; echo " Estrella(s)</span></td>"; 
+                            echo "<td>"; echo $row[1]; echo "</td>"; //nombre del negocio
+                            echo "</tr>";   
+                        }
+                        echo "</table>"; 
+                        echo '</div>';             
+                    }
+                }
+            }
+        }
     }
 
     /*
@@ -79,15 +570,17 @@
         
     ?>
         <!--Este script permite realizar la gráfica de pastel, de acuerdo a los comentarios positivos 
-        y negativos del servicio que el usuario eligió.
+        o negativos del servicio que el usuario eligió.
     
         Para la gráfica se utilizó Google Charts en el que nos permité crearla y despues convertirla en
         imagen-->
         <script>
             google.charts.load("current", {packages:["corechart"]});
-            google.charts.setOnLoadCallback(drawChart);
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+
+                    //Datos con los que se crea la gráfica
+                    var data = google.visualization.arrayToDataTable([
                     ['Puntuacion', '%'],
                     <?php 
                        $conteoComentarios = contarComentarios($parametro1);
@@ -96,18 +589,19 @@
                        echo "['Comentarios positivos', ".$conteoComentarios[0]."],";
                        echo "['Comentarios negativos', ".$conteoComentarios[1]."],";
                     ?>
-                ]);
-                    
-                var options = { is3D: true,};
+                
+                    ]);
+                    //Visualizar la gráfica en 3D
+                    var options = { is3D: true,};
 
-                var chart = new google.visualization.PieChart(document.getElementById('grafico'));
-                chart.draw(data, options);
+                    var chart = new google.visualization.PieChart(document.getElementById('grafico'));
+                    chart.draw(data, options);
 
-                //Se crea la imagen de la gráfica
-                document.getElementById('variableReporte').value = chart.getImageURI();
-            }
+                    //Se crea una imagen de la gráfica
+                    document.getElementById('variableReporte').value=chart.getImageURI();
+                }
+        
         </script>
-
         <!--Este formulario esta conformado por inputs de tipo hidden por lo que no se mostrarán al usuario,
         pero estos se encargarán de enviar información que se obtuvi anteriormente para así generar el pdf-->
         <form method="post" action="reporteComentarios.php" target='_blank' class="col-11">
@@ -133,35 +627,45 @@
         </form>
     <?php
 
-        //Posteriormente a la gráfica se muestran 
-        echo '<h3>Comentarios</h3>';
+        //Se verifican los parametros para saber si el reporte sera de todos los servicios o un solo servicio
+        if($parametro1 === "5" && $parametro2 === "Positivos"){
+           mejorServicio(); //Se llama a la función para obtener información del mejor servicio
+        }else{
+            if($parametro1 === "5" && $parametro2 === "Negativos"){
+                peorServicio(); //Se llama a la función para obtener información del peor servicio
+            }else{
 
-        echo '<div class="table-responsive">';
-        echo "<table class='table table-striped table-hover'>";
-        //Se muestra los nombres de cada columna de la tabla
-        echo "<thead>";
-        echo "<th>Servicio</th>";
-        echo "<th>Calificacion</th>";
-        echo "<th>Comentario</th>";
-        echo "</thead>"; 
-        //Se muestran los datos encontrados de la búsqueda
-        while ($row = mysqli_fetch_row($resultado)){
-            echo "<tr>";
-            echo "<td>"; echo $row[0]; echo "</td>"; //Servicio
+                //En caso de que solo sea un servicio se muestra una tabla con los comentarios de acuerdo al parámetro seleccionado
+                echo '<h3>Comentarios</h3>';
+                echo '<div class="table-responsive">';
+                echo "<table class='table table-striped table-hover'>";
+                //Se muestra los nombres de cada columna de la tabla
+                echo "<thead>";
+                echo "<th>Servicio</th>";
+                echo "<th>Calificacion</th>";
+                echo "<th>Comentario</th>";
+                echo "</thead>"; 
+                //Se muestran los datos encontrados de la búsqueda
+                while ($row = mysqli_fetch_row($resultado)){
+                    echo "<tr>";
+                    echo "<td>"; echo $row[0]; echo "</td>"; //Servicio
            
-            echo "<td> <span>"; 
+                    echo "<td> <span>"; 
 
-            //Se crean las estrellas de acuerdo a la calificación
-            for($estrellas = 0; $estrellas < $row[2];$estrellas++){
-                echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                    //Se crean las estrellas de acuerdo a la calificación
+                    for($estrellas = 0; $estrellas < $row[2];$estrellas++){
+                        echo "<i class='fa-solid fa-star' style='color:#FFD607;' ></i> ";
+                    }
+                    
+                    echo $row[2]; echo " Estrella(s)</span></td>"; 
+                    echo "<td>"; echo $row[1]; echo "</td>"; //Comentario
+                    echo "</tr>";   
+                }
+                echo "</table>"; 
+                echo '</div>';  
             }
-            
-            echo $row[2]; echo " Estrella(s)</span></td>"; 
-            echo "<td>"; echo $row[1]; echo "</td>"; //Comentario
-            echo "</tr>";   
         }
-        echo "</table>"; 
-        echo '</div>';      
+        mysqli_close($conn);//Se cierra la conexión con la bd.     
     }
 
     /*
@@ -173,7 +677,8 @@
         y negativos de acuerdo al servicio indicado.
     */
     function contarComentarios($servicio){
-      
+
+        //Se realiza el conteo de los comentarios positivos y negativos del servicio
         $resComentariosPositivos = contarComentariosPositivos($servicio);
         $resComentariosNegativos = contarComentariosNegativos($servicio);
 

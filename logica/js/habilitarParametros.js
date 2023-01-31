@@ -12,11 +12,12 @@ function habilitar(elemento) {
         parametro1.style.display = ''; // show
         parametro2.style.display = ''; // show
         parametro3.style.display = 'none'; // hide
+
     }else{
        
-            parametro1.style.display = 'none'; // hide
-            parametro2.style.display = 'none'; // hide
-            parametro3.style.display = ''; // show
+        parametro1.style.display = 'none'; // hide
+        parametro2.style.display = 'none'; // hide
+        parametro3.style.display = ''; // show
 
     }
 }

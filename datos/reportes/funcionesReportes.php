@@ -12,27 +12,21 @@
         require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
 
         //De acuerdo al filtro y al servicio elegido, este va a utilizar el query correspondiente para realizar la consulta a los comentarios
-        if($filtro === "Todos"){
+
+        if($filtro === "Positivos"){
             if($servicio === "5"){
-                $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio order by nombServ";
+                $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion>=3 order by nombServ";
             }else{
-                $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where comentario.idServicio = $servicio order by puntuacion";
+                $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion>=3 and comentario.idServicio = $servicio order by puntuacion";
             }
         }else{
-            if($filtro === "Positivos"){
-                if($servicio === "5"){
-                    $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion>=3 order by nombServ";
-                }else{
-                    $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion>=3 and comentario.idServicio = $servicio order by puntuacion";
-                }
+            if($servicio === "5"){
+                $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion<=2 order by nombServ";
             }else{
-                if($servicio === "5"){
-                    $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion<=2 order by nombServ";
-                }else{
-                    $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion<=2 and comentario.idServicio = $servicio order by puntuacion";
-                }
+                $sql = "SELECT nombServ, contenido, puntuacion from Comentario inner join Servicio on Comentario.idServicio = Servicio.idServicio where puntuacion<=2 and comentario.idServicio = $servicio order by puntuacion";
             }
-        }
+        }    
+        
        
         //Se ejecuta la sentencia sql
         $resultado = mysqli_query($conn, $sql);
@@ -97,6 +91,31 @@
  
         return $array['Negativos']; //Se retorna el conteo de los comentarios negativos
  
+        mysqli_close($conn);//Se cierra la conexión
+    }
+
+    /*
+        Nombre de la función: contarComentariosPositivos
+        Entrada: id del servicio
+        Salida: Resultado del conteo
+
+        Descripción: Esta función se encarga de contabilizar los comentarios positivos de un servicio o de todos los servicios.
+    */
+    function promedioXServicio($servicio){
+        //Se utiliza require en caso de error para detener el script. El archivo contiene la conexión a la base de datos
+        require $_SERVER['DOCUMENT_ROOT'].'/sistema web/datos/conexionBD.php';
+
+        //Query para obtener todas las calificaciones del servicio
+        $sql  = "SELECT AVG(puntuacion) as promedio from Comentario where idServicio = $servicio ";
+    
+        //Se ejecuta la sentencia sql
+        $consulta =  mysqli_query($conn, $sql);
+       
+        //Se almacena el resultado
+        $array = mysqli_fetch_array($consulta);
+ 
+        return $array['promedio']; //Se retorna el conteo de los comentarios negativos
+   
         mysqli_close($conn);//Se cierra la conexión
     }
 
