@@ -5,11 +5,11 @@
     <!-- Codificación de caracteres utilizada en el documento -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- viewport para el diseño responsive -->
+    <!-- Viewport para el diseño responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Título de la página que se visualiza en la pestaña desde el navegador -->
     <title>Visitas Guiadas</title>
-    <!-- links de estilos -->
+    <!-- Links de estilos -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/estilos_MasServicios.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -45,6 +45,7 @@
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
+                <!--Imagen 1 del carrousel-->
                 <div class="carousel-item active " data-bs-interval="10000">
                     <img src="../media/imagenes/slider.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -52,6 +53,7 @@
                         <p>Disfruta los servicios y actividades que tenemos para ti...</p>
                     </div>
                 </div>
+                <!--Imagen 2 del carrousel-->
                 <div class="carousel-item" data-bs-interval="10000">
                     <img src="../media/imagenes/slider.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -59,6 +61,7 @@
                         <p>Disfruta los servicios y actividades que tenemos para ti...</p>
                     </div>
                 </div>
+                <!--Imagen 2 del carrousel-->
                 <div class="carousel-item" data-bs-interval="10000">
                     <img src="../media/imagenes/slider.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -67,10 +70,12 @@
                     </div>
                 </div>
             </div>
+            <!--Botón para cambiar la imagen anterior del slider-->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
+            <!--botón para cambiar la siguiente imagen del slider-->
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
@@ -93,7 +98,9 @@
             </div>
             <div class="row seccionTarifas">
                 <?php
+                //Archivo con las funciones lógicas de los boletos
                 require '../../logica/gestionBoleto/boletos.php';
+                //Se llama a la función para mostrar los boletos del servicio con id = 3 (Visitas guiadas)
                 mostrarBoletosServicio(3);
                 ?>
             </div>
@@ -127,7 +134,9 @@
                 <div class="col-12">
                     <br>
                     <?php
+                    //Archivo para utilizar las funciones lógicas de las publicaciones
                     require '../../logica/gestionPublicacion/publicacion.php';
+                    //Se llama a la función para mostrar las publicaciones del servicio de las visitas guiadas
                     mostrarPublicacion("Visitas guiadas");
                     ?>
                 </div>
@@ -142,7 +151,9 @@
 
             <div class="row seccionComentarios">
                 <?php
+                //Archivo para utilizar las funciones lógicas de los comentarios
                 require '../../logica/gestionComentario/comentarios.php';
+                //Se llama a la función para mostrar los comentarios del servicio con id = 3 (Visitas guiadas)
                 mostrarComentariosXServicio(3);
                 ?>
             </div>
@@ -156,8 +167,9 @@
 
                 </div>
             </div>
-            <!--Información de la ubicación del parque-->
+            
             <div class="row">
+                <!--Logo-->
                 <div class="col-xs-12 col-sm-12 col-md-4 datos">
                     <div class="logo">
                         <div class="card-body">
@@ -168,6 +180,7 @@
                         </div>
                     </div>
                 </div>
+                <!--Información de la ubicación del parque-->
                 <div class="col-xs-12 col-sm-12 col-md-4 datos2">
                     <div class="card-body ">
                         <br>
@@ -175,6 +188,7 @@
                         <p class="card-text" style="color:white; font-size:18px;">Av. El Texcal 62, Unidad Habitacional El Texcal, Jiutepec, Morelos, México. 62573</p>
                     </div>
                 </div>
+                <!--Navegación rápida del sistema-->
                 <div class="col-xs-12 col-sm-12 col-md-4 datos3">
                     <div class="card-body ">
                         <br>

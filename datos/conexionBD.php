@@ -9,8 +9,7 @@
         //Se realiza la conexión exitosa
         //echo "Conexion exitosa";
     }else{
-        //Hubo un error al realizar la conexíon.
+        //Hubo un error al realizar la conexión.
         echo "Error de conexion";
     }
-
 ?>

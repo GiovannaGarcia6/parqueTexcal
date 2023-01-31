@@ -45,6 +45,7 @@
                 <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
             <div class="carousel-inner">
+                <!--Imagen 1 del carrousel-->
                 <div class="carousel-item active " data-bs-interval="10000">
                     <img src="../media/imagenes/slider.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -52,6 +53,7 @@
                         <p>Disfruta los servicios y actividades que tenemos para ti...</p>
                     </div>
                 </div>
+                <!--Imagen 2 del carrousel-->
                 <div class="carousel-item" data-bs-interval="10000">
                     <img src="../media/imagenes/slider.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -59,6 +61,7 @@
                         <p>Disfruta los servicios y actividades que tenemos para ti...</p>
                     </div>
                 </div>
+                <!--Imagen 3 del carrousel-->
                 <div class="carousel-item" data-bs-interval="10000">
                     <img src="../media/imagenes/slider.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
@@ -67,10 +70,12 @@
                     </div>
                 </div>
             </div>
+             <!--Botón para cambiar la imagen anterior del slider-->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
+            <!--botón para cambiar la siguiente imagen del slider-->
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
@@ -93,7 +98,9 @@
             </div>
             <div class="row seccionTarifas">
                 <?php
+                //Archivo con las funciones lógicas de los boletos
                 require '../../logica/gestionBoleto/boletos.php';
+                //Se llama a la función para mostrar los boletos del servicio con id = 2 (Caminatas)
                 mostrarBoletosServicio(2);
                 ?>
             </div>
@@ -127,7 +134,9 @@
                 <div class="col-12">
                     <br>
                     <?php
+                    //Archivo para utilizar las funciones lógicas de las publicaciones
                     require '../../logica/gestionPublicacion/publicacion.php';
+                    //Se llama a la función para mostrar las publicaciones del servicio de caminatas
                     mostrarPublicacion("Caminatas");
                     ?>
                 </div>
@@ -142,7 +151,9 @@
 
             <div class="row seccionComentarios">
                 <?php
+                //Archivo para utilizar las funciones lógicas de los comentarios
                 require '../../logica/gestionComentario/comentarios.php';
+                //Se llama a la función para mostrar los comentarios del servicio con id = 2 (Caminatas)
                 mostrarComentariosXServicio(2);
                 ?>
             </div>
